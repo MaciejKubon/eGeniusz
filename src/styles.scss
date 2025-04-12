@@ -1,4 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$eGeniusz-app-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($eGeniusz-app-theme);
+    --mat-input-underline-color: RGBA(0,0,0,0);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($eGeniusz-app-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($eGeniusz-app-theme);
+/* You can add global styles to this file, and also import other style files */
+.mdc-text-field--filled {
+  // when appearance="fill"
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.mdc-text-field--outlined {
+  // when appearance="outline"
+  --mdc-outlined-text-field-container-shape: 25px !important;
+}
 
 html,
 body {
@@ -6,8 +57,89 @@ body {
 }
 body {
   margin: 0;
+  padding: 0px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+//COLOR
+//
+$blueColorPrimary: #1c52e8;
+$blueColorSecond: #000033;
+$blueColorThird: #6c89db;
+$blueColorFourth: #717578a2;
+$whiteColorPrimary: #EEE;
+
+$bgblueColorPrimary: RGBA(0, 0, 100, 0.05);
+$bgblueColorSecond: RGBA(28, 82, 232,0.8);
+$bgblueColorThird:RGBA(28, 82, 232,0.05);
+$bgColorNone:RGBA(0,0,0,0);
+
+$colorFree: #666666;
+$termReservation: #009f4d;
+$termnoReservation:#ecf249;
+
+
+///
+$darkGreenColor: #003017;
+$lightGreenColor: #009f4d;
+$navBarColor: #00ffff;
+$backgroundColor: #bbbbbb; 
+$bgcCalnedar: #cccccc;
+$textFontColor: #009f4d;
+$textFontColorWhite: #bbbbbb;
+
+//FONT
+//HEDER
+$headerFontSize: 2rem;
+$headerFontSizeMedium:1.5rem;
+$headerFontSizeSmall:1.2rem;
+$fontHeaderSizeBBig:5rem;
+$fontHederSizeBig: 4rem;
+$fontHederSizeMid: 2.5rem;
+//p
+$fontSizeMidium: 1.2rem;
+$fontSizeSmall:1rem;
+
+//MOBILE FONT
+//HEDER
+$fontHederSizeBig-Mobile: 2rem;
+$fontHederSizeMid-Mobile: 1.5rem;
+//p
+$fontSizeMidium-Mobile: 1rem;
+
+//Font weight
+$fontBold: 600;
+$fontMedium: 400;
+$fontLight: 200;
+
+//hight
+$dayBoxHight: 60px;
+$dayBoxNameHight: 50px;
+ 
+//border
+$borderPrimary: 1px solid $blueColorPrimary;
+$borderBottomPrimary: 2px solid $blueColorPrimary;
+//borderRadius
+$radiusSmall:10px;
+$radiusMid: 25px;
+$radiusBig: 50px;
+$radiuVSmall:5px;
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bgblueColorPrimary;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $blueColorSecond;
+}
+
 .snackbar-success {
   background-color: #4caf50 !important;
   color: white;
@@ -17,3 +149,4 @@ body {
   background-color: #f44336 !important;
   color: white;
 }
+
