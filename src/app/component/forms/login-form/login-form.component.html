@@ -1,0 +1,53 @@
+<div class="login">
+  <div class="form">
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h4>Email:</h4>
+      <mat-form-field>
+        <mat-label>Wprowadź email</mat-label>
+        <input
+          matInput
+          [formControl]="email"
+          (blur)="updateEmailErrorMessage()"
+          required
+        />
+        @if (email.invalid) {
+        <mat-error>{{ errorEmailMessage() }}</mat-error>
+        }
+      </mat-form-field>
+      <h4>Hasło:</h4>
+      <mat-form-field>
+        <mat-label>Wprowadź hasło</mat-label>
+        <input
+          matInput
+          [type]="hide() ? 'password' : 'text'"
+          [formControl]="password"
+          required
+          (blur)="updatePasswordErrorMessage()"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (password.invalid) {
+        <mat-error>{{ errorPasswordMessage() }}</mat-error>
+        }
+      </mat-form-field>
+      <div class="registerLink">
+        <button mat-raised-button color="primary">Link</button>
+      </div>
+
+      <div class="submitButtonBox">
+        <button mat-raised-button color="primary" type="submit">
+          Zaloguj się
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
