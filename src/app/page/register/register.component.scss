@@ -1,0 +1,53 @@
+@import "../../../styles.scss";
+
+section {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  .logo,
+  .registerForm {
+    width: 50%;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 500ms;
+  }
+  .logo {
+    background-color: $bgblueColorSecond;
+    h1 {
+      font-size: $fontHeaderSizeBBig;
+      font-weight: $fontBold;
+    }
+  }
+  .registerForm {
+    background-color: $bgblueColorThird;
+    transition-duration: 500ms;
+  }
+}
+@media only screen and (max-width: 900px) {
+  section {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    transition: 500ms;
+    .logo,
+    .registerForm {
+      width: 100%;
+      transition: 500ms;
+    }
+    .logo {
+      height: 80px;
+      transition: 500ms;
+      h1 {
+        margin-top: 20px;
+        font-size: $fontHederSizeMid;
+        transition: 500ms;
+      }
+    }
+    .registerForm {
+      margin: 25px 0;
+      min-height: calc(100vh - 80px);
+      transition-duration: 500ms;
+    }
+  }
+}
