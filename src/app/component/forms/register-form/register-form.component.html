@@ -1,7 +1,7 @@
-<div class="login">
+<div class="register">
   <div class="form">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Rejestracja Ucznia</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <h4>Email:</h4>
       <mat-form-field>
         <mat-label>Wprowadź email</mat-label>
@@ -38,13 +38,32 @@
         <mat-error>{{ errorPasswordMessage() }}</mat-error>
         }
       </mat-form-field>
-      <div class="registerLink">
-        <button mat-raised-button color="primary">Link</button>
-      </div>
-
+      <h4>Powtórz hasło:</h4>
+      <mat-form-field>
+        <mat-label>Wprowadź ponownie hasło</mat-label>
+        <input
+          matInput
+          [type]="hide2() ? 'password' : 'text'"
+          [formControl]="rePassword"
+          required
+          (blur)="updateRePasswordErrorMessage()"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent2($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide2()"
+        >
+          <mat-icon>{{ hide2() ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        @if (rePassword.invalid) {
+        <mat-error>{{ errorRePasswordMessage() }}</mat-error>
+        }
+      </mat-form-field>
       <div class="submitButtonBox">
         <button mat-raised-button color="primary" type="submit">
-          Zaloguj się
+          Zarejestruj się
         </button>
       </div>
     </form>
