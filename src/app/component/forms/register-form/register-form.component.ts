@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { merge } from 'rxjs';
+import { MatRadioModule } from '@angular/material/radio';
+import { register } from '../../../interfaces/authInterfaces';
+import { NotificationService } from '../../../services/notification/notification.service';
 
 @Component({
   selector: 'app-register-form',
@@ -24,11 +27,13 @@ import { merge } from 'rxjs';
     MatIconModule,
     MatLabel,
     MatButtonModule,
+    MatRadioModule,
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
+  registerData: register = { email: '', password: '', role: '' };
   registerForm = new FormGroup({});
   readonly email = new FormControl('', [Validators.required, Validators.email]);
   readonly password = new FormControl('', [
@@ -39,12 +44,14 @@ export class RegisterFormComponent {
     Validators.required,
     Validators.minLength(8),
   ]);
+  readonly accountType = new FormControl('3', [Validators.required]);
+
   errorEmailMessage = signal('');
   errorPasswordMessage = signal('');
   errorRePasswordMessage = signal('');
   hide = signal(true);
   hide2 = signal(true);
-  constructor() {
+  constructor(private notificationService: NotificationService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateEmailErrorMessage());
@@ -69,9 +76,7 @@ export class RegisterFormComponent {
     if (this.password.hasError('required')) {
       this.errorPasswordMessage.set('Pole hasło nie możę być puste');
     } else if (this.password.hasError('minlength')) {
-      this.errorPasswordMessage.set(
-        'Hasło musi posiadać co najmniej 8 znaków'
-      );
+      this.errorPasswordMessage.set('Hasło musi posiadać co najmniej 8 znaków');
     } else {
       this.errorPasswordMessage.set('');
     }
@@ -99,5 +104,20 @@ export class RegisterFormComponent {
     this.updateEmailErrorMessage();
     this.updatePasswordErrorMessage();
     this.updateRePasswordErrorMessage();
+    if (
+      this.email.invalid ||
+      this.password.invalid ||
+      this.rePassword.invalid ||
+      this.accountType.invalid
+    ) {
+      this.notificationService.showError('Nieprawidłowe dane rejestracji');
+    } else {
+      this.registerData = {
+        email: this.email.value,
+        password: this.password.value,
+        role: this.accountType.value,
+      };
+      console.log(this.registerData);
+    }
   }
 }

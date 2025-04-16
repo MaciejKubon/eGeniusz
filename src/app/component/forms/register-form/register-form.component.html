@@ -1,6 +1,8 @@
 <div class="register">
   <div class="form">
-    <h2>Rejestracja Ucznia</h2>
+    <h2>
+      Rejestracja @if(accountType.value=='3'){ Ucznia } @else { Nauczyciela }
+    </h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <h4>Email:</h4>
       <mat-form-field>
@@ -61,6 +63,11 @@
         <mat-error>{{ errorRePasswordMessage() }}</mat-error>
         }
       </mat-form-field>
+      <h4>Zarejestruj się jako:</h4>
+      <mat-radio-group [formControl]="accountType" class="accountType">
+        <mat-radio-button value="3">Student</mat-radio-button>
+        <mat-radio-button value="2">Nauczyciel</mat-radio-button>
+      </mat-radio-group>
       <div class="submitButtonBox">
         <button mat-raised-button color="primary" type="submit">
           Zarejestruj się
