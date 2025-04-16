@@ -1,0 +1,44 @@
+@import "../../../styles.scss";
+section {
+  background-color: $backgroundColor;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  div {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px;
+    h1 {
+      font-size: $fontHeaderSizeBBig;
+    }
+    h2 {
+      font-size: $fontHederSizeBig;
+    }
+    h3 {
+      font-size: $headerFontSize;
+    }
+    button {
+      background-color: $bgColorNone;
+      box-shadow: none;
+    }
+    button:hover {
+      box-shadow: none;
+      background-color: $bgColorNone;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  h1 {
+    font-size: $fontHederSizeBig
+  }
+  h2 {
+    font-size: $fontHederSizeMid
+  }
+  h3 {
+    font-size: $headerFontSizeMedium
+  }
+}
