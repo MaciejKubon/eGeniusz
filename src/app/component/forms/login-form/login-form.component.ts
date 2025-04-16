@@ -6,13 +6,14 @@ import {
   FormsModule,
   FormControl,
   Validators,
-  ValidationErrors,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
+import { NotificationService } from '../../../services/notification/notification.service';
+import { login } from '../../../interfaces/authInterfaces';
 
 @Component({
   selector: 'app-login-form',
@@ -24,12 +25,13 @@ import { merge } from 'rxjs';
     MatInputModule,
     MatIconModule,
     MatLabel,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
+  loginData: login = { email: '', password: '' };
   loginForm = new FormGroup({});
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -38,7 +40,7 @@ export class LoginFormComponent {
   errorPasswordMessage = signal('');
   hide = signal(true);
 
-  constructor() {
+  constructor(private notificationService: NotificationService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateEmailErrorMessage());
@@ -70,5 +72,14 @@ export class LoginFormComponent {
   onSubmit() {
     this.updateEmailErrorMessage();
     this.updatePasswordErrorMessage();
+    if (this.email.invalid || this.password.invalid) {
+      this.notificationService.showError('Nieprawidłowe dane logowania');
+    } else {
+      this.loginData = {
+        email: this.email.value,
+        password: this.password.value,
+      };
+      console.log(this.loginData);
+    }
   }
 }
