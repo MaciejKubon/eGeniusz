@@ -43,7 +43,7 @@
         }
       </mat-form-field>
       <div class="registerLink">
-        <button mat-raised-button color="primary">Link</button>
+        <app-link-with-out-background-button [navigation]="navForgot" />
       </div>
 
       <div class="submitButtonBox">
@@ -52,5 +52,8 @@
         </button>
       </div>
     </form>
+  </div>
+  <div class="registerLink">
+    <app-link-with-out-background-button [navigation]="navRegiester" />
   </div>
 </div>

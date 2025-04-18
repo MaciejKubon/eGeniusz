@@ -1,75 +1,75 @@
- @import '../../../../styles.scss';
- 
- .login{
+@import "../../../../styles.scss";
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition-duration: 500ms;
+  .form {
+    width: 100%;
+    border: $borderPrimary;
+    border-radius: 50px;
+    transition-duration: 500ms;
+    padding: 20px;
+    h2 {
+      color: $blueColorSecond;
+      text-align: center;
+      padding: 0px 10%;
+      margin: 25px 0px 25px;
+      transition-duration: 500ms;
+      font-size: $headerFontSize;
+      font-weight: $fontBold;
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      transition-duration: 500ms;
+      h4 {
+        margin: 0px 10%;
+        width: 80%;
+        text-align: left;
+        color: $blueColorSecond;
+        font-weight: $fontMedium;
+        font-size: $headerFontSizeSmall;
+      }
+      mat-form-field {
+        margin: 5px 10%;
+        width: 80%;
+        display: flex;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        transition-duration: 500ms;
+        input {
+          width: 80% !important;
+          transition-duration: 500ms;
+        }
+      }
+      .submitButtonBox {
+        margin-top: 10px;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        transition-duration: 500ms;
+        button {
+          width: 200px !important;
+          background-color: $whiteColorPrimary;
+          transition: 500ms;
+        }
+        button:hover {
+          background-color: $blueColorPrimary;
+          color: $whiteColorPrimary;
+          transition: 500ms;
+        }
+      }
+    }
+  }
+  .registerLink {
+    margin: 10px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    transition-duration: 500ms;
-    .form{
-        width: 100%;
-        border: $borderPrimary;
-        border-radius: 50px;
-        transition-duration: 500ms;
-        padding: 20px;
-        h2{
-            color: $blueColorSecond;
-            text-align: center;
-            padding: 0px 10%;
-            margin: 25px 0px 25px;
-            transition-duration: 500ms; 
-            font-size: $headerFontSize;
-            font-weight: $fontBold;
-        }
-        form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            transition-duration: 500ms;
-            h4 {
-                margin: 0px 10%;
-                width: 80%;
-                text-align: left;
-                color: $blueColorSecond;
-                font-weight: $fontMedium;
-                font-size: $headerFontSizeSmall;
-              }
-              mat-form-field {
-              margin: 5px 10%;
-              width: 80%;
-              display: flex;
-              margin-bottom: 10px;
-              border-radius: 50%;
-              transition-duration: 500ms;
-              input {
-                width: 80% !important;
-                transition-duration: 500ms;
-              }
-            } 
-            .submitButtonBox {
-                margin-top: 10px;
-                width: 80%;
-                display: flex;
-                justify-content: center;
-                transition-duration: 500ms;
-                button {
-                  width: 200px !important;
-                  background-color: $whiteColorPrimary;
-                  transition: 500ms;
-                }
-                button:hover {
-                  background-color: $blueColorPrimary;
-                  color: $whiteColorPrimary;
-                  transition: 500ms;
-                }
-              }
-            .registerLink{
-                margin: 10px;
-                width: 80%;
-                display: flex;
-                justify-content: flex-end;
-            }
-        }
-    }
- }
+    justify-content: flex-end;
+  }
+}

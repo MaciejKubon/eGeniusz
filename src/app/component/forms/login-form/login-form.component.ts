@@ -17,6 +17,8 @@ import { login, loginSucces } from '../../../interfaces/authInterfaces';
 import { LoginService } from '../../../services/http/auth/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../services/service/auth/auth.service';
+import { LinkWithOutBackgroundButtonComponent } from '../../buttons/link-with-out-background-button/link-with-out-background-button.component';
+import { linkButton } from '../../../interfaces/buttonInterfaces';
 
 @Component({
   selector: 'app-login-form',
@@ -29,15 +31,21 @@ import { AuthService } from '../../../services/service/auth/auth.service';
     MatIconModule,
     MatLabel,
     MatButtonModule,
+    LinkWithOutBackgroundButtonComponent,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
   loginData: login = { email: '', password: '' };
+  navRegiester: linkButton = {
+    path: 'register',
+    text: 'Nie posiadasz konta? Zarejestruj się.',
+  };
+  navForgot: linkButton = { path: 'forgot-password', text: 'Przypomnij hasło' };
+
   loginForm = new FormGroup({});
   readonly email = new FormControl('', [Validators.required, Validators.email]);
-
   readonly password = new FormControl('', [Validators.required]);
   errorEmailMessage = signal('');
   errorPasswordMessage = signal('');
