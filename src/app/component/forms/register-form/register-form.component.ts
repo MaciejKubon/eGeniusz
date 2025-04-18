@@ -21,6 +21,8 @@ import {
 import { NotificationService } from '../../../services/service/notification/notification.service';
 import { RegisterService } from '../../../services/http/auth/register.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { linkButton } from '../../../interfaces/buttonInterfaces';
+import { LinkWithOutBackgroundButtonComponent } from '../../buttons/link-with-out-background-button/link-with-out-background-button.component';
 
 @Component({
   selector: 'app-register-form',
@@ -34,6 +36,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     MatLabel,
     MatButtonModule,
     MatRadioModule,
+    LinkWithOutBackgroundButtonComponent
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
@@ -44,6 +47,10 @@ export class RegisterFormComponent {
     password: '',
     rePassword: '',
     role: '',
+  };
+  navLogin: linkButton = {
+    path: 'login',
+    text: 'Posiadasz konta? Zaloguj się.',
   };
   registerForm = new FormGroup({});
   readonly email = new FormControl('', [Validators.required, Validators.email]);
