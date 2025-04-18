@@ -11,10 +11,16 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { merge } from 'rxjs';
+import { catchError, merge, throwError } from 'rxjs';
 import { MatRadioModule } from '@angular/material/radio';
-import { register } from '../../../interfaces/authInterfaces';
-import { NotificationService } from '../../../services/notification/notification.service';
+import {
+  register,
+  registerError,
+  registerSucces,
+} from '../../../interfaces/authInterfaces';
+import { NotificationService } from '../../../services/service/notification/notification.service';
+import { RegisterService } from '../../../services/http/auth/register.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-form',
@@ -33,7 +39,12 @@ import { NotificationService } from '../../../services/notification/notification
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
-  registerData: register = { email: '', password: '', role: '' };
+  registerData: register = {
+    email: '',
+    password: '',
+    rePassword: '',
+    role: '',
+  };
   registerForm = new FormGroup({});
   readonly email = new FormControl('', [Validators.required, Validators.email]);
   readonly password = new FormControl('', [
@@ -45,13 +56,16 @@ export class RegisterFormComponent {
     Validators.minLength(8),
   ]);
   readonly accountType = new FormControl('3', [Validators.required]);
-
+  private accont: string | null = null;
   errorEmailMessage = signal('');
   errorPasswordMessage = signal('');
   errorRePasswordMessage = signal('');
   hide = signal(true);
   hide2 = signal(true);
-  constructor(private notificationService: NotificationService) {
+  constructor(
+    private notificationService: NotificationService,
+    private RegisterService: RegisterService
+  ) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateEmailErrorMessage());
@@ -92,6 +106,14 @@ export class RegisterFormComponent {
       this.errorRePasswordMessage.set('');
     }
   }
+  setError(errors: registerError) {
+    if (errors?.email != null)
+      this.password.setErrors({ apiError: errors.email[0] });
+    if (errors?.password != null)
+      this.password.setErrors({ apiError: errors.password[0] });
+    if (errors?.rePassword != null)
+      this.rePassword.setErrors({ apiError: errors.rePassword[0] });
+  }
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
@@ -112,12 +134,25 @@ export class RegisterFormComponent {
     ) {
       this.notificationService.showError('Nieprawidłowe dane rejestracji');
     } else {
+      if (this.accountType.value == '3') this.accont = 'student';
+      else this.accont = 'teacher';
       this.registerData = {
         email: this.email.value,
         password: this.password.value,
-        role: this.accountType.value,
+        rePassword: this.rePassword.value,
+        role: this.accont,
       };
-      console.log(this.registerData);
+      this.RegisterService.register(this.registerData)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.notificationService.showError(error.error.message);
+            this.setError(error.error.error);
+            return throwError(() => new Error('Error fetching data'));
+          })
+        )
+        .subscribe((data: registerSucces) => {
+          this.notificationService.showSuccess(data.message);
+        });
     }
   }
 }

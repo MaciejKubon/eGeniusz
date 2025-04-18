@@ -11,9 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { merge } from 'rxjs';
-import { NotificationService } from '../../../services/notification/notification.service';
-import { login } from '../../../interfaces/authInterfaces';
+import { catchError, merge, throwError } from 'rxjs';
+import { NotificationService } from '../../../services/service/notification/notification.service';
+import { login, loginSucces } from '../../../interfaces/authInterfaces';
+import { LoginService } from '../../../services/http/auth/login.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../services/service/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -40,7 +43,11 @@ export class LoginFormComponent {
   errorPasswordMessage = signal('');
   hide = signal(true);
 
-  constructor(private notificationService: NotificationService) {
+  constructor(
+    private notificationService: NotificationService,
+    private LoginService: LoginService,
+    private AuthSession: AuthService
+  ) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateEmailErrorMessage());
@@ -65,6 +72,12 @@ export class LoginFormComponent {
       this.errorPasswordMessage.set('');
     }
   }
+
+  setError(error: string) {
+    this.password.setErrors({ apiError: error });
+    this.email.setErrors({ apiError: error });
+  }
+
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
@@ -79,7 +92,19 @@ export class LoginFormComponent {
         email: this.email.value,
         password: this.password.value,
       };
-      console.log(this.loginData);
+      this.LoginService.login(this.loginData)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.notificationService.showError(error.error.error);
+            this.setError(error.error.error);
+            return throwError(() => new Error('Error fetching data'));
+          })
+        )
+        .subscribe((data: loginSucces) => {
+          this.AuthSession.setToken(data.token);
+          this.notificationService.showSuccess(data.message);
+          console.log(data.role);
+        });
     }
   }
 }
