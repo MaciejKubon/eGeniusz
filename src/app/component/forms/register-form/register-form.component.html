@@ -13,7 +13,10 @@
           (blur)="updateEmailErrorMessage()"
           required
         />
-        @if (email.invalid) {
+        @if((email.errors?.['apiError'])){
+        <mat-error>{{email.errors?.['apiError'] }}</mat-error>
+
+        } @if (email.invalid) {
         <mat-error>{{ errorEmailMessage() }}</mat-error>
         }
       </mat-form-field>
@@ -36,7 +39,10 @@
         >
           <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
-        @if (password.invalid) {
+        @if((password.errors?.['apiError'])){
+        <mat-error>{{password.errors?.['apiError'] }}</mat-error>
+
+        } @if (password.invalid) {
         <mat-error>{{ errorPasswordMessage() }}</mat-error>
         }
       </mat-form-field>
@@ -59,7 +65,10 @@
         >
           <mat-icon>{{ hide2() ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
-        @if (rePassword.invalid) {
+        @if((rePassword.errors?.['apiError'])){
+        <mat-error>{{rePassword.errors?.['apiError'] }}</mat-error>
+
+        } @if (rePassword.invalid) {
         <mat-error>{{ errorRePasswordMessage() }}</mat-error>
         }
       </mat-form-field>

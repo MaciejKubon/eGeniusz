@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NotificationService } from './services/notification/notification.service';
+import { NotificationService } from './services/service/notification/notification.service';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
