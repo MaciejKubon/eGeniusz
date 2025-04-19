@@ -1,4 +1,7 @@
 <header>
     <div class="logo">.</div>
-    
+    <app-nav-button [navigation]="navigation"/>
+    <app-logout-button/>
+    <app-menu-button (clicked)="showMenu($event)"/>
+    <app-close-button (clicked)="hideMenu($event)"/>
 </header>  
