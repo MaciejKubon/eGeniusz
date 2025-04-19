@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+header {
+  width: 100%;
+  min-height: 70px;
+  position: fixed;
+  top: 0px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $blueColorPrimary;
+  .logo {
+    width: 30%;
+  }
+}
