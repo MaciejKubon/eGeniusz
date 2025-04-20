@@ -111,7 +111,7 @@ export class LoginFormComponent {
         .subscribe((data: loginSucces) => {
           this.AuthSession.setToken(data.token);
           this.notificationService.showSuccess(data.message);
-          console.log(data.role);
+          this.AuthSession.setRole(data.role);
         });
     }
   }

@@ -1,7 +1,23 @@
 <header>
-    <div class="logo">.</div>
-    <app-nav-button [navigation]="navigation"/>
-    <app-logout-button/>
-    <app-menu-button (clicked)="showMenu($event)"/>
-    <app-close-button (clicked)="hideMenu($event)"/>
-</header>  
+  <div class="logo">.</div>
+  <div class="menuButton">
+    @if(activeMenu) {
+    <app-close-button (clicked)="hideMenu($event)" />
+    }@else{
+    <app-menu-button (clicked)="showMenu($event)" />
+    }
+  </div>
+  <div class="navigation">
+    <nav [ngClass]="activeMenu ? '' : 'active'">
+      <ul>
+        @for(navigation of nav; track navigation) {
+        <li><app-nav-button [navigation]="navigation" /></li>
+        }
+
+        <li><app-logout-button /></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<app-logout-button />

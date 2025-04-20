@@ -13,5 +13,12 @@ import { CommonModule } from '@angular/common';
 })
 export class NavButtonComponent {
   @Input() navigation: linkButton = { path: '', text: '' };
+  currentPath = '';
   constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
+    this.currentPath = this.router.url;
+    console.log(this.currentPath);
+    
+  }
 }
