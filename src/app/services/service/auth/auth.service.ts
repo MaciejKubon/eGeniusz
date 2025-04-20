@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
+  private roleSubject = new BehaviorSubject<string>('teacher'); 
 
   setToken(token: string) {
     sessionStorage.setItem('token', token);
@@ -18,5 +20,17 @@ export class AuthService {
   }
   removeToken() {
     sessionStorage.removeItem('token');
+  }
+
+  setRole(role: string) {
+    this.roleSubject.next(role);
+  }
+
+  getRole(): Observable<string> {
+    return this.roleSubject.asObservable();
+  }
+
+  getCurrentRole(): string {
+    return this.roleSubject.value;
   }
 }
