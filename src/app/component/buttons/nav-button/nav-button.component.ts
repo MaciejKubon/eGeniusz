@@ -17,8 +17,6 @@ export class NavButtonComponent {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.currentPath = this.router.url;
-    console.log(this.currentPath);
-    
+    this.currentPath = this.router.url;    
   }
 }

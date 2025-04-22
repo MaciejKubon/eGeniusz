@@ -8,6 +8,9 @@ export interface login{
     email:string|null;
     password:string|null;
 }
+export interface authRole{
+    role:string;
+}
 export interface registerError{
     email?: string[];
     password?: string[];
@@ -21,4 +24,7 @@ export interface loginSucces{
     message:string;
     role:string;
     token:string;
+}
+export interface authSucces{
+    message:string
 }
