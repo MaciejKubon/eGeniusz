@@ -19,6 +19,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../services/service/auth/auth.service';
 import { LinkWithOutBackgroundButtonComponent } from '../../buttons/link-with-out-background-button/link-with-out-background-button.component';
 import { linkButton } from '../../../interfaces/buttonInterfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -54,7 +55,8 @@ export class LoginFormComponent {
   constructor(
     private notificationService: NotificationService,
     private LoginService: LoginService,
-    private AuthSession: AuthService
+    private AuthSession: AuthService,
+    private router: Router
   ) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
@@ -112,6 +114,7 @@ export class LoginFormComponent {
           this.AuthSession.setToken(data.token);
           this.notificationService.showSuccess(data.message);
           this.AuthSession.setRole(data.role);
+          this.router.navigate(['/home']);
         });
     }
   }
