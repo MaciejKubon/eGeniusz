@@ -38,7 +38,7 @@ export class HeaderComponent {
     } else {
       this.nav = [
         { path: 'home', text: 'home' },
-        { path: 'student/calendar', text: 'kalendarz' },
+        { path: 'lesson', text: 'przedmioty' },
         { path: 'student/details', text: 'ustawienia' },
       ];
     }

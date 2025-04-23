@@ -1,0 +1,20 @@
+@import '../../../../styles.scss';
+.tableBox {
+  width: 100%;
+}
+table {
+  width: 100%;
+  background-color: $bgColorNone;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0);
+  border: $borderPrimary;
+  border-radius: $radiusSmall;
+
+  th,
+  td {
+    width: 45%;
+  }
+  th:last-of-type,
+  td:last-of-type {
+    width: 50px;
+  }
+}
