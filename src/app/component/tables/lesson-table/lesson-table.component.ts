@@ -3,15 +3,25 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { lesson, lessonSucces } from '../../../interfaces/lessonInterfaces';
 import { LessonService } from '../../../services/http/lessons/lesson.service';
 import { MatSortModule } from '@angular/material/sort';
+import { EditButtonComponent } from '../../buttons/edit-button/edit-button.component';
+import { DeleteButtonComponent } from '../../buttons/delete-button/delete-button.component';
+import { SpinnerComponent } from '../../spinner/spinner.component';
 
 @Component({
   selector: 'app-lesson-table',
   standalone: true,
-  imports: [MatTableModule, MatSortModule],
+  imports: [
+    MatTableModule,
+    MatSortModule,
+    EditButtonComponent,
+    DeleteButtonComponent,
+    SpinnerComponent,
+  ],
   templateUrl: './lesson-table.component.html',
   styleUrl: './lesson-table.component.scss',
 })
 export class LessonTableComponent {
+  isLoadingResults: boolean = true;
   lessonData: MatTableDataSource<lesson>;
   displayedColumns: string[] = ['przedmiot', 'poziom', 'cena', 'action'];
   constructor(private httpLesson: LessonService) {
@@ -27,8 +37,15 @@ export class LessonTableComponent {
   ngOnInit() {
     this.httpLesson.getLessonList().subscribe((data: lessonSucces) => {
       this.lessonData = new MatTableDataSource(data.lessons);
-      console.log(this.lessonData.data);
+      this.isLoadingResults=false;
     });
   }
-  
+
+  edit(id: number) {
+    console.log(id);
+  }
+
+  delete(id: number) {
+    console.log(id);
+  }
 }
