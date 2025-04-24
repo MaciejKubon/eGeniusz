@@ -3,8 +3,10 @@
   <app-spinner />
   }@else{
   <div class="title">
-    <div class="titleContainer"> <app-header-title [title]="'przedmioty'" /></div>
-   
+    <div class="titleContainer">
+      <app-header-title [title]="'przedmioty'" />
+    </div>
+
     <div class="buttonContainer">
       @if(!isOpenAddForm){
       <app-add-with-text-button (clicked)="addForm()" />
