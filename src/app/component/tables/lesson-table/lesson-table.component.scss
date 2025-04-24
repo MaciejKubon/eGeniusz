@@ -25,7 +25,10 @@
     border: $borderPrimary;
     border-radius: $radiusSmall;
     justify-content: space-between;
-
+    align-items: center;
+    mat-form-field{
+      margin: 15px auto;
+    }
     th,
     td {
       width: 25%;
@@ -35,7 +38,7 @@
       width: 15%;
       text-align: center;
     }
-    app-edit-button{
+    app-edit-button, app-delete-button, app-save-button, app-close-button{
       margin-right: 10px;
     }
   }
