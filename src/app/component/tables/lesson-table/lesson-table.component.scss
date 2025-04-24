@@ -1,20 +1,56 @@
-@import '../../../../styles.scss';
-.tableBox {
+@import "../../../../styles.scss";
+.tableContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
-}
-table {
-  width: 100%;
-  background-color: $bgColorNone;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0);
-  border: $borderPrimary;
-  border-radius: $radiusSmall;
+  app-spiner{
+    width: 100%;
+  }
+  .title{
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .addFrom{
+    width: 100%;
+  }
+  table {
+    margin-top: 50px;
+    width: 100%;
+    background-color: $bgColorNone;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0);
+    border: $borderPrimary;
+    border-radius: $radiusSmall;
+    justify-content: space-between;
 
-  th,
-  td {
-    width: 45%;
+    th,
+    td {
+      width: 25%;
+    }
+    th:last-of-type,
+    td:last-of-type {
+      width: 15%;
+      text-align: center;
+    }
+    app-edit-button{
+      margin-right: 10px;
+    }
   }
-  th:last-of-type,
-  td:last-of-type {
-    width: 50px;
+}
+@media only screen and (max-width: 900px) {
+  .title{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    .buttonContainer,.titleContainer{
+      width: 100%;
+    }
+    app-header-title,app-add-with-text-button, app-close-with-text-button{
+      width: 100%;
+    }
   }
+    
 }

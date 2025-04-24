@@ -1,0 +1,35 @@
+<div class="addLessonContainer">
+  <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+    <div class="lessonFrom">
+      <h4>Przedmiot:</h4>
+      <mat-form-field>
+        <mat-label>Przedmiot</mat-label>
+        <mat-select [formControl]="subjectValue">
+          <mat-option></mat-option>
+          @for (e of subject; track e) {
+          <mat-option [value]="e.id">{{ e.name }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>{{ errorSubjectValueMessage() }}</mat-error>
+      </mat-form-field>
+      <h4>Poziom:</h4>
+      <mat-form-field>
+        <mat-label>Poziom</mat-label>
+        <mat-select [formControl]="subjectLevelValue">
+          <mat-option></mat-option>
+          @for (e of subjectLevel; track e) {
+          <mat-option [value]="e.id">{{ e.name }}</mat-option>
+          }
+        </mat-select>
+        <mat-error>{{ errorSubjectLevelValueMessage() }}</mat-error>
+      </mat-form-field>
+      <h4>Cena:</h4>
+      <mat-form-field>
+        <mat-label>Cena</mat-label>
+        <input matInput [formControl]="priceValue" type="number" />
+        <mat-error>{{ errorPriceValueMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <app-save-with-text-button (clicked)="onSubmit()" />
+  </form>
+</div>

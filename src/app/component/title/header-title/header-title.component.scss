@@ -1,0 +1,13 @@
+@import '../../../../styles.scss';
+
+h1{
+    font-size: $headerFontSize;
+    font-weight: $fontBold;
+    color: $blueColorSecond;
+    line-height: 1.5rem;
+    padding-left: 25px;
+}
+.udnerLine{
+    width: 300px;
+    border-bottom: $borderBottomSecend;
+}
