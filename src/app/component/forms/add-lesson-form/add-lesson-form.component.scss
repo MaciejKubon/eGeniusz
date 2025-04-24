@@ -1,0 +1,57 @@
+@import "../../../../styles.scss";
+
+.addLessonContainer {
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    .lessonFrom {
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      h4 {
+        color: $blueColorSecond;
+        font-weight: $fontBold;
+        font-size: $fontSizeMidium-Mobile;
+      }
+      mat-form-field {
+        margin-top: 10px;
+        width: 25%;
+      }
+    }
+  }
+  app-save-with-text-button {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 900px) {
+    .addLessonContainer {
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          .lessonFrom {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            h4 {
+              color: $blueColorSecond;
+              font-weight: $fontBold;
+              font-size: $fontSizeMidium-Mobile;
+            }
+            mat-form-field {
+              margin-top: 10px;
+              width: 100%;
+            }
+          }
+        }
+        app-save-with-text-button {
+          margin-top: 10px;
+        }
+      }
+      
+}
