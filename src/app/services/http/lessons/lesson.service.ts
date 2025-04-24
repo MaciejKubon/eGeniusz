@@ -23,4 +23,7 @@ export class LessonService {
     deleteLesson(id:number){
       return this.http.delete<any>(this.apiUrl+'lesson/'+id);
     }
+    updateLesson(id:number, lesson:addLesson){
+      return this.http.put<any>(this.apiUrl+'lesson/'+id,lesson);
+    }
 }
