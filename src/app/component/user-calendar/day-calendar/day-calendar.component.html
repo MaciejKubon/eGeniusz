@@ -1,0 +1,22 @@
+<div class="dayContainer">
+    <div class="dayNameBox">
+      <span>{{ day }}</span>
+    </div>
+    <div class="hoursContainer">
+      <div class="hourBox">
+        @for(hour of hours; track hour){
+        <div class="hourBox">
+          @for(time of hour.mm; track time){
+          <div class="timeBox" (click)="selectTerm(hour.hh + ':' + time)"></div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  @if(isVisableTermForm) {
+    <div class="newTermForm">
+      <app-new-term [Term]="selectNewTerm" (closeModal)="closeModal($event)"/>
+  </div>
+  }
+  

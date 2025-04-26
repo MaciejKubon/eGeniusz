@@ -1,0 +1,61 @@
+@import "../../../styles.scss";
+.calendatContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  .title {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .calenderRange {
+    display: flex;
+    justify-content: space-between;
+    border: $borderPrimary;
+    border-radius: $radiusSmall;
+    width: 100%;
+    .DataRange {
+      display: flex;
+      align-items: center;
+      font-size:$fontHederSizeMid-Mobile;
+      color: $blueColorSecond;
+    }
+  }
+  .calendar{
+    width: 100%;
+    margin-top: 0px;
+    background-color: $blueColorSecond;
+    display: flex;
+    app-spinner{
+      width: 100%;
+    }
+    .hoursContainer {
+      margin-top: $dayBoxNameHight;
+      width: 50px;
+      background-color: $blueColorSecond;
+      text-align: center;
+      .hourBox {
+        color: $whiteColorPrimary;
+        height: $dayBoxHight;
+        border-top: $borderPrimary;
+      }
+    }
+    .daysContainer {
+      border-left: $borderPrimary;
+      width: calc(100% - 50px);
+      display: flex;
+      app-day-calendar{
+        width: 100%;
+      }
+      .dayBox {
+        width: 100%;
+      }
+      .dayBoxMobile {
+        display: none;
+      }
+    }
+  }
+}

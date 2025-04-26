@@ -1,0 +1,15 @@
+@import '../../../styles.scss';
+section{
+    background-color: $bgblueColorPrimary;
+    min-height: 100svh;
+    .calendarContainer{
+        margin-top: 70px;
+        padding-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        app-user-calendar{
+            width: 75%;
+        }
+    }
+}

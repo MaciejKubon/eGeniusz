@@ -1,0 +1,35 @@
+@import "../../../../styles.scss";
+
+.dayContainer {
+  .dayNameBox {
+    width: 100%;
+    text-align: center;
+    height: $dayBoxNameHight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $whiteColorPrimary;
+  }
+  .hoursContainer {
+    position: relative;
+    .hourBox {
+      border-top: $borderPrimary;
+      background-color: $bgcCalnedar;
+      .timeBox {
+        height: calc($dayBoxHight / 4);
+      }
+      .timeBox:hover{
+        background-color: $bgcCalnedarHover;
+      }
+    }
+  }
+}
+.deletetTerm,.confirmedClasses,.newTermForm,.confirmedNoClasses {
+  position: fixed;
+  width: 70%;
+  top:20svh;
+  left: 15%;
+  z-index: 200;
+  background-color: $whiteColorPrimary;
+  border-radius: $radiusMid;
+}

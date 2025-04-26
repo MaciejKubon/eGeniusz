@@ -31,7 +31,7 @@ export class HeaderComponent {
     if (this.role === 'student') {
       this.nav = [
         { path: 'home', text: 'home' },
-        { path: 'student/calendar', text: 'kalendarz' },
+        { path: 'calendar', text: 'kalendarz' },
         { path: 'student/teacher', text: 'nauczyciele' },
         { path: 'student/details', text: 'ustawienia' },
       ];
@@ -39,6 +39,7 @@ export class HeaderComponent {
       this.nav = [
         { path: 'home', text: 'home' },
         { path: 'lesson', text: 'przedmioty' },
+        { path: 'calendar', text: 'kalendarz' },
         { path: 'student/details', text: 'ustawienia' },
       ];
     }
