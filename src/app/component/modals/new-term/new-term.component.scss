@@ -1,0 +1,50 @@
+@import "../../../../styles.scss";
+
+.addFormContainer {
+  width: 90%;
+  background-color: $bgModal;
+  border-radius: $radiusMid;
+  padding: 35px 5%;
+  box-shadow: $modalShadow;
+  .headerContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .dateTerm{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    app-information-modal{
+      width: 20%;
+    }
+  }
+  .formContainer {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      h4 {
+        width: 50%;
+        color: $blueColorSecond;
+        font-weight: $fontBold;
+        font-size: $fontSizeMidium-Mobile;
+      }
+      mat-form-field {
+        width: 50%;
+      }
+      .saveContainer{
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="calendatContainer">
+  <div class="title">
+    <div class="titleContainer">
+      <app-header-title [title]="'Kalendarz'" />
+    </div>
+  </div>
+  <div class="calenderRange">
+    <div class="leftArrow">
+      <div class="leftArrow">
+        <app-arrow-back (clicked)="changeRange(-7)" />
+      </div>
+    </div>
+    <div class="DataRange">
+      {{ dataRange.start_date }} - {{ dataRange.end_date }}
+    </div>
+    <div class="rightArrow">
+      <app-arrow-back [position]="position" (click)="changeRange(7)" />
+    </div>
+  </div>
+
+  <div class="calendar">
+    @if (isLoadingResults) {
+    <app-spinner />
+    } @else{
+    <div class="hoursContainer">
+      @for(hour of hours; track hour){
+      <div class="hourBox">
+        <span>{{ hour }}</span>
+      </div>
+      }
+    </div>
+    @for(day of dateList; track day){
+    <div class="daysContainer"><app-day-calendar [day]="day" (relfleshCalendar)="refleshCalendar($event)"/></div>
+    } }
+  </div>
+</div>

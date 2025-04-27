@@ -1,0 +1,13 @@
+@import '../../../../styles.scss';
+
+h2{
+    font-size: $headerFontSizeMedium;
+    font-weight: $fontBold;
+    color: $blueColorSecond;
+    line-height: 1.5rem;
+    padding-left: 25px;
+}
+.udnerLine{
+    width: 400px;
+    border-bottom: $borderBottomSecend;
+}

@@ -1,0 +1,29 @@
+<div class="addFormContainer">
+  <div class="headerContainer">
+    <app-header-modal [title]="'Dodawanie terminu'" />
+    <app-close-button (clicked)="close()"/>
+  </div>
+  <div class="dateTerm">
+    <app-information-modal [title]="'Data zajęć:'"/>
+    <app-information-modal [title]="Term.dataTerm"/>
+    </div>
+  <div class="formContainer">
+    <form [formGroup]="addTerm">
+      <h4>Czas startu</h4>
+      <mat-form-field>
+        <mat-label>Czas startu</mat-label>
+        <input matInput type="time" [formControl]="startTime" required />
+        <mat-error>{{ errorStartTimeMessage() }}</mat-error>
+
+      </mat-form-field>
+      <h4>Czas końca</h4>
+      <mat-form-field>
+        <mat-label>Czas końca</mat-label>
+        <input matInput type="time" [formControl]="endTime" required />
+        <mat-error>{{ errorEndTimeMessage() }}</mat-error>
+
+      </mat-form-field>
+      <div class="saveContainer"><app-save-with-text-button (clicked)="onSubmit()" /></div>
+    </form>
+  </div>
+</div>

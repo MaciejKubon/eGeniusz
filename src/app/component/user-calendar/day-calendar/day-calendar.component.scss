@@ -1,0 +1,59 @@
+@import "../../../../styles.scss";
+
+.dayContainer {
+  .dayNameBox {
+    width: 100%;
+    text-align: center;
+    height: $dayBoxNameHight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $whiteColorPrimary;
+  }
+  .hoursContainer {
+    position: relative;
+    .hourBox {
+      border-top: $borderPrimary;
+      background-color: $bgcCalnedar;
+      .timeBox {
+        height: calc($dayBoxHight / 4);
+      }
+      .timeBox:hover{
+        background-color: $bgcCalnedarHover;
+      }
+    }
+  }
+}
+
+.modalPage{
+  position: fixed;
+  width: 100%;
+  top:0svh;
+  left: 0px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  background-color: $bgGrayColor;
+  .detailTerm,.confirmedClasses,.newTermForm,.confirmedNoClasses {
+    width: 70%;
+    background-color: $whiteColorPrimary;
+    border-radius: $radiusMid;
+  }
+}
+.termsReservetrion,.termsFree,.termsNoReservetrion{
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top: 100px;
+  z-index: 10;
+  border-radius: $radiuVSmall;
+  font-size: $fontSizeSmall;
+  background-color: aqua;
+  p{
+    font-size: $fontSizeVerySmall;
+    text-align: center;
+  }
+  
+}

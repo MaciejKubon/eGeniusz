@@ -75,6 +75,7 @@ $whiteColorPrimary: #EEE;
 $bgblueColorPrimary: RGBA(0, 0, 100, 0.05);
 $bgblueColorSecond: RGBA(28, 82, 232,0.8);
 $bgblueColorThird:RGBA(28, 82, 232,0.05);
+$bgGrayColor:RGBA(50,50,50,0.8);
 $bgColorNone:RGBA(0,0,0,0);
 
 $colorFree: #666666;
@@ -88,6 +89,8 @@ $lightGreenColor: #009f4d;
 $navBarColor: #00ffff;
 $backgroundColor: #bbbbbb; 
 $bgcCalnedar: #cccccc;
+$bgcCalnedarHover:#bbbbbb;
+$bgModal:#f0f8ff;
 $textFontColor: #009f4d;
 $textFontColorWhite: #bbbbbb;
 
@@ -100,8 +103,10 @@ $fontHeaderSizeBBig:5rem;
 $fontHederSizeBig: 4rem;
 $fontHederSizeMid: 2.5rem;
 //p
+$fontSizeBig:1.4rem;
 $fontSizeMidium: 1.2rem;
 $fontSizeSmall:1rem;
+$fontSizeVerySmall:0.9rem;
 
 //MOBILE FONT
 //HEDER
@@ -128,6 +133,10 @@ $radiusSmall:10px;
 $radiusMid: 25px;
 $radiusBig: 50px;
 $radiuVSmall:5px;
+
+//modalShedow
+$modalShadow: 0px 0px 5px gray;
+
 ::-webkit-scrollbar {
   width: 10px;
 }
