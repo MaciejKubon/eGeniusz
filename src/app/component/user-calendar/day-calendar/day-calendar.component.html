@@ -1,22 +1,50 @@
 <div class="dayContainer">
-    <div class="dayNameBox">
-      <span>{{ day }}</span>
-    </div>
-    <div class="hoursContainer">
+  <div class="dayNameBox">
+    <span>{{ day.date }}</span>
+  </div>
+  <div class="hoursContainer">
+    <div class="hourBox">
+      @if(role=="teacher"){ @for(hour of hours; track hour){
       <div class="hourBox">
-        @for(hour of hours; track hour){
-        <div class="hourBox">
-          @for(time of hour.mm; track time){
-          <div class="timeBox" (click)="selectTerm(hour.hh + ':' + time)"></div>
-          }
-        </div>
+        @for(time of hour.mm; track time){
+        <div class="timeBox" (click)="selectTerm(hour.hh + ':' + time)"></div>
         }
       </div>
+      }}@else{ @for(hour of hours; track hour){
+      <div class="hourBox">
+        @for(time of hour.mm; track time){
+        <div class="timeBox"></div>
+        }
+      </div>
+      } }
     </div>
+    @for(term of day.terms; track term){
+    <div
+      class="termsNoReservetrion"
+      [style.height.px]="term.diffTime"
+      [style.top.px]="term.posTop"
+      (click)="detailTerm(term.id)"
+    >
+      <p>
+        {{ term.start_date.split(" ")[1] }} - {{ term.end_date.split(" ")[1] }}
+      </p>
+    </div>
+
+    }
   </div>
-  @if(isVisableTermForm) {
-    <div class="newTermForm">
-      <app-new-term [Term]="selectNewTerm" (closeModal)="closeModal($event)"/>
+</div>
+
+@if(isVisableTermForm) {
+<div class="modalPage">
+  <div class="newTermForm">
+    <app-new-term [Term]="selectNewTerm" (closeModal)="closeModal($event)" />
   </div>
-  }
-  
+</div>
+
+} @if(isVisableTermDetail){
+<div class="modalPage">
+  <div class="detailTerm">
+    <app-detail-terms [idTerm]="idTerm"  (closeModal)="closeModal($event)"/>
+  </div>
+</div>
+}

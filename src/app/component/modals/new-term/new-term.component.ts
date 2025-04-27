@@ -101,6 +101,8 @@ export class NewTermComponent {
         start_date: this.Term.dataTerm + ' '+ this.startTime.value+':00',
         end_date: this.Term.dataTerm + ' '+ this.endTime.value+':00',
       }
+      console.log(this.newTerm );
+      
       this.termService.setTerm(this.newTerm)
       .pipe(
         catchError((error:HttpErrorResponse)=>{

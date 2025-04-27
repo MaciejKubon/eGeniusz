@@ -1,0 +1,26 @@
+<div class="detailContainer">
+  <div class="headerContainer">
+    <app-header-modal [title]="'Szczegóły terminu'" />
+    <app-close-button (clicked)="close()" />
+  </div>
+  @if(isLoadingResults){ <app-spinner /> }@else{
+  <div class="detailTerm">
+    <div class="dateTerm">
+      <app-information-modal [title]="'Data zajęć:'" />
+      <app-information-modal [title]="Term[0]" />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Czas rozpoczęcia:'" />
+      <app-information-modal [title]="Term[1]" />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Czas zakończenia:'" />
+      <app-information-modal [title]="Term[2]" />
+    </div>
+  </div>
+  @if(role=="teacher"){
+  <div class="deleteContainer">
+    <app-delete-with-text-button (clicked)="delete()" />
+  </div>
+  } }
+</div>
