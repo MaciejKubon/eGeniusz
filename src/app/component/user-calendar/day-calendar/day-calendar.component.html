@@ -20,7 +20,11 @@
     </div>
     @for(term of day.terms; track term){
     <div
-      class="termsNoReservetrion"
+      [ngClass]="{
+        freeTerm: term.class == null,
+        noReservation: term.class != null && term.class.confirmed == 0
+      }"
+      class="term"
       [style.height.px]="term.diffTime"
       [style.top.px]="term.posTop"
       (click)="detailTerm(term.id)"
@@ -44,7 +48,7 @@
 } @if(isVisableTermDetail){
 <div class="modalPage">
   <div class="detailTerm">
-    <app-detail-terms [idTerm]="idTerm"  (closeModal)="closeModal($event)"/>
+    <app-detail-terms [idTerm]="idTerm" (closeModal)="closeModal($event)" />
   </div>
 </div>
 }

@@ -1,4 +1,5 @@
-import { teacher } from './userInetrafces';
+import { lesson } from './lessonInterfaces';
+import { student, teacher } from './userInetrafces';
 
 export interface selectTimeTerm {
   dataTerm: string;
@@ -20,10 +21,17 @@ export interface terms {
   start_date: string;
   end_date: string;
   teacher: teacher;
-  class: null;
+  class: null | classInTerms;
   diffTime?: number;
   posTop?: number;
 }
+export interface classInTerms {
+  id: number;
+  student: student;
+  lesson: lesson;
+  confirmed: number
+}
+
 export interface newTermSuccess {
   message: string;
 }
@@ -38,6 +46,9 @@ export interface termDetailSucces {
 export interface deleteTermSucces {
   message: string;
 }
+export interface deleteClassSucces {
+  message: string;
+}
 export interface newTermError {
   message: string;
   error: {
@@ -46,6 +57,10 @@ export interface newTermError {
   };
 }
 export interface deleteTermError {
+  message: string;
+  error: string;
+}
+export interface deleteClassError {
   message: string;
   error: string;
 }
