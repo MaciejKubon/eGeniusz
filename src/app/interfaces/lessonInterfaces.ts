@@ -6,7 +6,7 @@ export interface lesson {
   id: number;
   subject: subject;
   subject_level: subjectLevel;
-  teacher: teacher;
+  teacher?: teacher;
   price: number;
 }
 export interface addLesson {

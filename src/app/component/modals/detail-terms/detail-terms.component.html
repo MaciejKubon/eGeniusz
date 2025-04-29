@@ -17,10 +17,42 @@
       <app-information-modal [title]="'Czas zakończenia:'" />
       <app-information-modal [title]="Term[2]" />
     </div>
+    @if(termDetail.class!=null){
+    <div class="dateTerm">
+      <app-information-modal [title]="'Student:'" />
+      <app-information-modal
+        [title]="
+          termDetail.class.student.first_name +
+          ' ' +
+          termDetail.class.student.last_name
+        "
+      />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Przedmiot:'" />
+      <app-information-modal [title]="termDetail.class.lesson.subject.name" />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Poziom:'" />
+      <app-information-modal
+        [title]="termDetail.class.lesson.subject_level.name"
+      />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Cena:'" />
+      <app-information-modal
+        [title]="termDetail.class.lesson.price.toString() + ' zł'"
+      />
+    </div>
+    }
   </div>
-  @if(role=="teacher"){
+  @if(role=="teacher"){ @if(termDetail.class==null){
   <div class="deleteContainer">
     <app-delete-with-text-button (clicked)="delete()" />
   </div>
-  } }
+  }@else{ 
+    <div class="deleteContainer">
+      <app-cancel-with-text-button (clicked)="cancel()" />
+    </div>
+  }}}
 </div>

@@ -7,11 +7,12 @@ import { NewTermComponent } from '../../modals/new-term/new-term.component';
 import { TermService } from '../../../services/http/calendar/term.service';
 import { AuthService } from '../../../services/service/auth/auth.service';
 import { DetailTermsComponent } from '../../modals/detail-terms/detail-terms.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-day-calendar',
   standalone: true,
-  imports: [NewTermComponent, DetailTermsComponent],
+  imports: [NewTermComponent, DetailTermsComponent, CommonModule],
   templateUrl: './day-calendar.component.html',
   styleUrl: './day-calendar.component.scss',
 })
@@ -23,7 +24,7 @@ export class DayCalendarComponent {
   @Output() relfleshCalendar = new EventEmitter<boolean>();
   isVisableTermForm: boolean = false;
   isVisableTermDetail: boolean = false;
-  idTerm:number = 0;
+  idTerm: number = 0;
   selectNewTerm: selectTimeTerm = { dataTerm: '', timeTerm: '' };
   hourStart: number = 10;
   hourEnd: number = 23;
@@ -48,7 +49,7 @@ export class DayCalendarComponent {
     this.selectNewTerm.timeTerm = times;
     this.isVisableTermForm = true;
   }
-  detailTerm(id:number){
+  detailTerm(id: number) {
     this.idTerm = id;
     this.isVisableTermDetail = true;
   }
@@ -60,14 +61,18 @@ export class DayCalendarComponent {
   calculatePosition() {
     if (this.day.terms != null) {
       this.day.terms.forEach((e) => {
+        let dat = new Date(e.start_date.split(' ')[0] + ' 10:00:00');
         let sDate = new Date(e.start_date);
         let eDate = new Date(e.end_date);
+        let diff = Math.ceil(
+          Math.abs(sDate.getTime() - dat.getTime()) / (1000 * 60) / 60 +2
+        );
         e.diffTime =
           Math.ceil(Math.abs(eDate.getTime() - sDate.getTime()) / (1000 * 60)) -
           2;
         e.posTop =
-          3 +
-          Math.ceil(Math.abs(sDate.getTime() - eDate.getTime()) / (1000 * 60));
+          diff +
+          Math.ceil(Math.abs(sDate.getTime() - dat.getTime()) / (1000 * 60));
       });
     }
   }
