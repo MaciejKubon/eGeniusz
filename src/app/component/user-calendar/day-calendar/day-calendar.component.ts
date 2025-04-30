@@ -35,7 +35,7 @@ export class DayCalendarComponent {
   }[] = [];
 
   constructor(private termService: TermService, private auth: AuthService) {
-    this.role = auth.getCurrentRole();
+    this.role = auth.getRole();
     for (let i = this.hourStart; i <= this.hourEnd; i++) {
       let minutes: string[] = ['00', '15', '30', '45'];
       this.hours.push({ hh: i.toString(), mm: minutes });
@@ -65,7 +65,7 @@ export class DayCalendarComponent {
         let sDate = new Date(e.start_date);
         let eDate = new Date(e.end_date);
         let diff = Math.ceil(
-          Math.abs(sDate.getTime() - dat.getTime()) / (1000 * 60) / 60 +2
+          Math.abs(sDate.getTime() - dat.getTime()) / (1000 * 60) / 60 + 2
         );
         e.diffTime =
           Math.ceil(Math.abs(eDate.getTime() - sDate.getTime()) / (1000 * 60)) -

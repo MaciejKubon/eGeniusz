@@ -1,14 +1,24 @@
-<div class="calendatContainer">
+<div class="calendarContainer">
   <div class="title">
     <div class="titleContainer">
       <app-header-title [title]="'Kalendarz'" />
     </div>
   </div>
+  <div class="calendarRangeMobile">
+    <div class="leftArrow">
+      <app-arrow-back (clicked)="changeRange(-1)" />
+    </div>
+    <div class="DataRange">
+      {{ dataRange.start_date }}
+    </div>
+    <div class="rightArrow">
+      <app-arrow-back [position]="position" (click)="changeRange(1)" />
+    </div>
+  </div>
+
   <div class="calenderRange">
     <div class="leftArrow">
-      <div class="leftArrow">
-        <app-arrow-back (clicked)="changeRange(-7)" />
-      </div>
+      <app-arrow-back (clicked)="changeRange(-7)" />
     </div>
     <div class="DataRange">
       {{ dataRange.start_date }} - {{ dataRange.end_date }}
@@ -17,6 +27,15 @@
       <app-arrow-back [position]="position" (click)="changeRange(7)" />
     </div>
   </div>
+  @if(role=="teacher"){
+  <div class="legendContainer">
+    <app-calendar-legend [typeLegend]="'full'" />
+  </div>
+  } @if(role=="student"){
+  <div class="legendContainer">
+    <app-calendar-legend [typeLegend]="'short'" />
+  </div>
+  }
 
   <div class="calendar">
     @if (isLoadingResults) {
@@ -30,7 +49,19 @@
       }
     </div>
     @for(day of dateList; track day){
-    <div class="daysContainer"><app-day-calendar [day]="day" (relfleshCalendar)="refleshCalendar($event)"/></div>
-    } }
+    <div class="daysContainer">
+      <app-day-calendar
+        [day]="day"
+        (relfleshCalendar)="refleshCalendar($event)"
+      />
+    </div>
+    }
+    <div class="daysContainerMobile">
+      <app-day-calendar
+        [day]="dateList[0]"
+        (relfleshCalendar)="refleshCalendar($event)"
+      />
+    </div>
+    }
   </div>
 </div>

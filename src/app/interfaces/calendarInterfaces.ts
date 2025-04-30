@@ -25,6 +25,10 @@ export interface terms {
   diffTime?: number;
   posTop?: number;
 }
+
+export interface dateClass {
+  date: string;
+}
 export interface classInTerms {
   id: number;
   student: student;

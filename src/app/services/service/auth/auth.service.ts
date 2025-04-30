@@ -11,6 +11,7 @@ export class AuthService {
 
   setToken(token: string) {
     sessionStorage.setItem('token', token);
+   
   }
   getToken() :string{
     let tokenValue:string = "";
@@ -23,14 +24,13 @@ export class AuthService {
   }
 
   setRole(role: string) {
-    this.roleSubject.next(role);
+    sessionStorage.setItem('role',role);
   }
 
-  getRole(): Observable<string> {
-    return this.roleSubject.asObservable();
-  }
-
-  getCurrentRole(): string {
-    return this.roleSubject.value;
+  getRole(): string {
+    let roleValue:string = "";
+    if(sessionStorage.getItem('role')!=null)
+      roleValue = sessionStorage.getItem('role')!;
+    return roleValue;
   }
 }

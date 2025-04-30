@@ -17,7 +17,7 @@
       <app-information-modal [title]="'Czas zakończenia:'" />
       <app-information-modal [title]="Term[2]" />
     </div>
-    @if(termDetail.class!=null){
+    @if(termDetail.class!=null){ @if(role == "teacher"){
     <div class="dateTerm">
       <app-information-modal [title]="'Student:'" />
       <app-information-modal
@@ -28,6 +28,17 @@
         "
       />
     </div>
+    } @if(role=="student"){
+    <div class="dateTerm">
+      <app-information-modal [title]="'Nauczyciel:'" />
+      <app-information-modal
+        [title]="
+          termDetail.teacher.firstName + ' ' + termDetail.teacher.lastName
+        "
+      />
+    </div>
+    }
+
     <div class="dateTerm">
       <app-information-modal [title]="'Przedmiot:'" />
       <app-information-modal [title]="termDetail.class.lesson.subject.name" />
@@ -46,13 +57,17 @@
     </div>
     }
   </div>
-  @if(role=="teacher"){ @if(termDetail.class==null){
+  @if(termDetail.class==null){
   <div class="deleteContainer">
     <app-delete-with-text-button (clicked)="delete()" />
   </div>
-  }@else{ 
-    <div class="deleteContainer">
-      <app-cancel-with-text-button (clicked)="cancel()" />
-    </div>
-  }}}
+  }@else{ @if(role=="teacher"){
+  <div class="deleteContainer">
+    <app-cancel-with-text-button (clicked)="cancel()" />
+  </div>
+  }@else{
+  <div class="deleteContainer">
+    <app-cancel-with-text-button (clicked)="cancel()" />
+  </div>
+  } }}
 </div>

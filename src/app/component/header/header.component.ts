@@ -27,7 +27,7 @@ export class HeaderComponent {
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    this.role = this.auth.getCurrentRole();
+    this.role = this.auth.getRole();
     if (this.role === 'student') {
       this.nav = [
         { path: 'home', text: 'home' },
