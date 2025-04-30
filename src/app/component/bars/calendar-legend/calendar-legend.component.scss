@@ -1,0 +1,32 @@
+@import '../../../../styles.scss';
+.legendsContainer{
+    display: flex;
+    justify-content: space-around;
+    .legend{
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      min-width: 25%;
+      .colorContainer{
+        width: 20px;
+        height: 20px;
+        border-radius: $radiusMid;
+      }
+      h4{
+        font-weight: $fontMedium;
+        font-size: $fontSizeSmall;
+        margin-left: 10px;
+        margin-top: 6px;
+      }
+      .freeTerm{
+        background-color: $colorFree;
+      }
+      .reservationTerm{
+        background-color: $termReservation;
+      }
+      .noReservationTerm{
+        background-color: $termnoReservation;
+      }
+    }
+
+  }

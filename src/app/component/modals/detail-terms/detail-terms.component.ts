@@ -56,7 +56,7 @@ export class DetailTermsComponent {
     private authService: AuthService
   ) {}
   ngOnInit() {
-    this.role = this.authService.getCurrentRole();
+    this.role = this.authService.getRole();
     this.Term = [];
     this.termService
       .getTermDetail(this.idTerm)
@@ -67,7 +67,7 @@ export class DetailTermsComponent {
         })
       )
       .subscribe((data: termDetailSucces) => {
-        this.termDetail = data.terms;
+        this.termDetail = data.terms;                
         this.Term.push(this.termDetail.start_date.split(' ')[0]);
         this.Term.push(this.termDetail.start_date.split(' ')[1]);
         this.Term.push(this.termDetail.end_date.split(' ')[1]);

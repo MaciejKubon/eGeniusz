@@ -16,7 +16,7 @@ export class AuthorizationService {
   
     
     authorization(){
-      const role:authRole ={role: this.auth.getCurrentRole()}
+      const role:authRole ={role: this.auth.getRole()}
       
       return this.http.post<any>(this.apiUrl,role);
     }
