@@ -33,14 +33,14 @@ export class HeaderComponent {
         { path: 'home', text: 'home' },
         { path: 'calendar', text: 'kalendarz' },
         { path: 'student/teacher', text: 'nauczyciele' },
-        { path: 'student/details', text: 'ustawienia' },
+        { path: 'setting', text: 'ustawienia' },
       ];
     } else {
       this.nav = [
         { path: 'home', text: 'home' },
         { path: 'lesson', text: 'przedmioty' },
         { path: 'calendar', text: 'kalendarz' },
-        { path: 'student/details', text: 'ustawienia' },
+        { path: 'setting', text: 'ustawienia' },
       ];
     }
   }

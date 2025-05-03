@@ -1,0 +1,11 @@
+.uploadAvatarContainer{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    mat-form-field{
+        width: 50%;
+    }
+    app-save-with-text-button{
+        width: 40%;
+    }
+}

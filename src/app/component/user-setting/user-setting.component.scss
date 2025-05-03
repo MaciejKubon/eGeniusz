@@ -1,0 +1,93 @@
+@import "../../../styles.scss";
+
+.settingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 50px;
+  .title {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .detailsContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .avatarContainer {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      figure {
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        position: relative;
+        img {
+          width: 100%;
+          border-radius: $radiusMid;
+        }
+        .deleteAvatar {
+          position: absolute;
+          top: 5%;
+          right: 5%;
+          background-color: #dc143c;
+          border: none;
+          width: 30px;
+          height: 30px;
+          border-radius: 10000px;
+          color: white;
+          font-weight: 600;
+        }
+        .deleteAvatar:hover {
+          cursor: pointer;
+          background-color: #b22222;
+        }
+      }
+      .uploadContainer {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        app-upload-avatar {
+          width: 100%;
+        }
+      }
+    }
+    .dataContainer {
+      margin-top: 25px;
+      width: 65%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      .userData {
+        margin: 10px auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .descriptionData{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        app-information-modal{
+          width: 100%;
+        }
+      }
+      .editContainer{
+        margin-top: 25px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .userDetailsForm{
+      width: 65%;
+    }
+  }
+}
