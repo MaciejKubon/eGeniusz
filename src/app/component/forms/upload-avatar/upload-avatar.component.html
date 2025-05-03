@@ -1,0 +1,26 @@
+<div class="uploadAvatarContainer">
+  <mat-form-field appearance="outline">
+    <mat-label>Wybierz plik</mat-label>
+    <input
+    name="avatar"
+      type="text"
+      matInput
+      [value]="fileName"
+      placeholder="Wybierz plik"
+      readonly
+      (click)="fileInput.click()"
+    />
+    <button mat-icon-button matSuffix (click)="fileInput.click()" type="button">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <input
+    name="avatar"
+      type="file"
+      hidden
+      #fileInput
+      (change)="onFileSelected($event)"
+      accept="image/png, image/jpeg"
+    />
+  </mat-form-field>
+  <app-save-with-text-button (clicked)="uploadFile()"/>
+</div>

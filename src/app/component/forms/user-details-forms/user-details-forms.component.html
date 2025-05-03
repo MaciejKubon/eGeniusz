@@ -1,0 +1,63 @@
+<div class="userDetailCointener">
+  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+    <div class="userData">
+      <app-information-modal [title]="'Imię: '" />
+      <mat-form-field>
+        <mat-label>Imię</mat-label>
+        <input
+          [formControl]="firstNameValue"
+          matInput
+          (blur)="updateFirstNameErrorMessage()"
+        />
+        <mat-error>{{ errorFirstNameValueMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="userData">
+      <app-information-modal [title]="'Nazwisko: '" />
+      <mat-form-field>
+        <mat-label>Nazwisko</mat-label>
+        <input
+          [formControl]="lastNameValue"
+          matInput
+          (blur)="updateLastNameErrorMessage()"
+        />
+        <mat-error>{{ errorLastNameValueMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="userData">
+      <app-information-modal [title]="'Data urodzenia: '" />
+      <mat-form-field>
+        <mat-label>Data urodzenia</mat-label>
+        <input
+          matInput
+          [formControl]="bitrthdayValue"
+          [matDatepicker]="picker"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>{{ errorBitrthdayValueMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    @if(role=="teacher"){
+    <div class="descriptionData">
+      <app-information-modal [title]="'Opis: '" />
+      <mat-form-field>
+        <mat-label>Opis</mat-label>
+        <textarea matInput [formControl]="descriptionValue"></textarea>
+        <mat-hint align="end">{{descriptionValue.value.length}} / 1000</mat-hint>
+        <mat-error>{{ errorDescriptionValueMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    }
+
+    <div class="buttonContainer">
+        <app-save-with-text-button (clicked)="save($event)"/>
+        <app-cancel-with-text-button (clicked)="cancel($event)"/>
+    </div>
+  </form>
+</div>

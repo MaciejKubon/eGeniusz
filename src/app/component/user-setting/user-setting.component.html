@@ -1,0 +1,55 @@
+<div class="settingContainer">
+  <div class="title">
+    <div class="titleContainer">
+      <app-header-title [title]="'Ustawienia użytkownika'" />
+    </div>
+  </div>
+  <div class="detailsContainer">
+    @if(isLoadingResults) {
+    <app-spinner />
+    }@else{
+    <div class="avatarContainer">
+      @if(isLoadingResultsAvatar){
+        <app-spinner />
+      }@else{
+        <figure>
+          <img [src]="avatarLink" alt="photo" />
+          <button class="deleteAvatar" (click)="deleteAvatar()">X</button>
+        </figure>
+        <div class="uploadContainer">
+          <app-upload-avatar (saveFile)="uploadAvatar($event)" />
+        </div>
+      }
+
+    </div>
+    @if(isActiveEdit){ 
+      <div class="userDetailsForm">
+        <app-user-details-forms [userDetail]="userDetails" (closeForm)="closeForm($event)"/>
+      </div>
+    }@else{
+    <div class="dataContainer">
+      <div class="userData">
+        <app-information-modal [title]="'Imię: '" />
+        <app-information-modal [title]="userDetails.firstName" />
+      </div>
+      <div class="userData">
+        <app-information-modal [title]="'Nazwisko: '" />
+        <app-information-modal [title]="userDetails.lastName" />
+      </div>
+      <div class="userData">
+        <app-information-modal [title]="'Data urodzenia: '" />
+        <app-information-modal [title]="userDetails.birthday" />
+      </div>
+      @if(role=="teacher"){
+      <div class="descriptionData">
+        <app-information-modal [title]="'Opis: '" />
+        <app-information-modal [title]="userDetails.description" />
+      </div>
+      }
+      <div class="editContainer">
+        <app-edit-with-text-button (clicked)="edit($event)" />
+      </div>
+    </div>
+    }}
+  </div>
+</div>

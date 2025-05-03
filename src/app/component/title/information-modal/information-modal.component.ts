@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './information-modal.component.scss'
 })
 export class InformationModalComponent {
-  @Input() title:string ='';
+  @Input() title:string|null ='';
 
 }
