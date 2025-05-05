@@ -1,0 +1,52 @@
+<div class="teacherListContainer">
+  <div class="title">
+    <div class="titleContainer">
+      <app-header-title [title]="'Lista nauczycieli'" />
+    </div>
+    <div class="buttonContainer">
+      @if(!isOpenAddForm){
+      <app-filtr-with-text-button (clicked)="openFiltr()" />
+      }@else{
+      <app-close-with-text-button (clicked)="closeFiltr()" />
+      }
+    </div>
+  </div>
+  <div class="filtrContainer">
+    @if(isOpenAddForm){
+    <app-teachers-filtr (filter)="filter($event)" />
+    }
+  </div>
+  <div class="teacherList">
+    @if(isLoadingResults)
+    {
+      <app-spinner />
+    }@else{
+    @for(teacher of teacherList; track teacher){
+    <div class="teacher" (click)="routeTo(teacher.id)">
+      <figure>
+        <img [src]="link + teacher.avatar" />
+      </figure>
+      <div class="teacherDetail">
+        <div class="name">
+          <h5>{{ teacher.firstName }} {{ teacher.lastName }}</h5>
+        </div>
+        <div class="subject">
+          <h6>{{ teacher.subjects.join(", ") }}</h6>
+        </div>
+        <div class="subjectLevel">
+          <h6>{{ teacher.subjectLevels.join(", ") }}</h6>
+        </div>
+        <div class="price">
+          <h6>
+          @if(teacher.price.length>1){
+          {{ teacher.price[0] }} - {{ teacher.price[teacher.price.length - 1] }}
+          }@else{
+          {{ teacher.price[0] }}
+          }
+          zł </h6>
+        </div>
+      </div>
+    </div>
+    }}
+  </div>
+</div>

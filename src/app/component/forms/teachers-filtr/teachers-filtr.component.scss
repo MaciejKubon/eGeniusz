@@ -1,0 +1,47 @@
+@import "../../../../styles.scss";
+
+.filterCointenier {
+  width: 100%;
+  form {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    .filterBox {
+      width: 32%;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+      h4 {
+        color: $blueColorSecond;
+        font-weight: $fontBold;
+        font-size: $fontSizeMidium-Mobile;
+      }
+      mat-form-field {
+        margin-top: 10px;
+        width: 70%;
+      }
+      mat-slider{
+        width: 50%;
+      }
+    }
+  }
+  .saveButtonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .filterCointenier{
+    form{
+      flex-wrap: wrap;
+      .filterBox{
+        width: 100%;
+      }
+    }
+  }
+  .saveButtonContainer{
+    margin-top: 25px;
+  }
+}
