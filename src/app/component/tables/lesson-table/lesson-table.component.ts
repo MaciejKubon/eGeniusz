@@ -103,10 +103,18 @@ export class LessonTableComponent {
     this.lessonData = new MatTableDataSource([lesson]);
   }
   ngOnInit() {
-    this.httpLesson.getLessonList().subscribe((data: lessonSucces) => {
-      this.lessonData = new MatTableDataSource(data.lessons);
-      this.isLoadingResults = false;
-    });
+    this.httpLesson
+      .getLessonList()
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.notificationService.showError(error.error.error);
+          return throwError(() => new Error('Error fetching data'));
+        })
+      )
+      .subscribe((data: lessonSucces) => {
+        this.lessonData = new MatTableDataSource(data.lessons);
+        this.isLoadingResults = false;
+      });
   }
   addNewLesson(send: boolean) {
     this.refleshDataTable();

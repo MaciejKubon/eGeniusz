@@ -1,0 +1,106 @@
+@import "../../../styles.scss";
+.teacherListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  .title {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .filtrContainer {
+    width: 100%;
+    app-teachers-filtr {
+      width: 100%;
+    }
+  }
+  .teacherList {
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .teacher {
+      width: 45%;
+      background-color: $bgblueColorThird;
+      border-radius: $radiusMid;
+      display: flex;
+      margin-top: 25px;
+      figure {
+        margin: 10px 10px 10px 20px;
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 100%;
+          border-radius:$radiusMid;
+        }
+      }
+      .teacherDetail {
+        margin: 15px 10px;
+        .name {
+          h5 {
+            font-size: $fontSizeBig;
+            font-weight: $fontMedium;
+          }
+        }
+        .subject,
+        .subjectLevel,
+        .price {
+          h6 {
+            margin-top: 0px;
+            padding: 0px;
+            font-size: $fontSizeSmall;
+            font-weight: $fontMedium;
+          }
+        }
+      }
+    }
+    .teacher:hover{
+      cursor: pointer;
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .teacherListContainer{
+    .title{
+      flex-wrap: wrap;
+
+      .titleContainer{
+        width: 100%;
+      }
+      .buttonContainer{
+        margin-top: 25px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .teacherList{
+      .teacher{
+        width: 100%;
+        figure{
+          width: 30%;
+        }
+        .teacherDetail {
+          .name {
+            h5 {
+              font-size: $fontSizeSmall;
+            }
+          }
+          .subject,
+          .subjectLevel,
+          .price {
+            h6 {
+              font-size: $fontSizeVerySmall;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -32,7 +32,7 @@ export class HeaderComponent {
       this.nav = [
         { path: 'home', text: 'home' },
         { path: 'calendar', text: 'kalendarz' },
-        { path: 'student/teacher', text: 'nauczyciele' },
+        { path: 'teachers', text: 'nauczyciele' },
         { path: 'setting', text: 'ustawienia' },
       ];
     } else {

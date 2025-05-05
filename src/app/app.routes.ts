@@ -7,6 +7,7 @@ import { HomeComponent } from './page/home/home.component';
 import { LessonComponent } from './page/lesson/lesson.component';
 import { CalendarComponent } from './page/calendar/calendar.component';
 import { SettingPageComponent } from './page/setting-page/setting-page.component';
+import { TeacherListComponent } from './page/teacher-list/teacher-list.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'lesson', component: LessonComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'setting', component: SettingPageComponent },
+  { path: 'teachers', component: TeacherListComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', component: NotFoundPageComponent },
   { path: '500', component: ErrorPageComponent },
