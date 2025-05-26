@@ -1,7 +1,7 @@
 <button
   mat-raised-button
   aria-label="linkButton"
-  routerLink="../{{ navigation.path }}"  
+  routerLink="/{{ navigation.path }}"  
   [class.deActive]="currentPath === '/'+navigation.path"
   > {{ navigation.text | uppercase }}
 

@@ -1,4 +1,4 @@
-@import "../../../../styles.scss";
+@import "../../../../../styles.scss";
 
 .dayContainer {
   .dayNameBox {
@@ -23,7 +23,6 @@
       }
     }
   }
-  
 }
 .term {
   position: absolute;
@@ -52,7 +51,7 @@
   width: 100%;
   top: 0svh;
   left: 0px;
-  z-index: 9999;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,56 @@
+<div class="calendarContainer">
+  <div class="calendarRangeMobile">
+    <div class="leftArrow">
+      <app-arrow-back (clicked)="changeRange(-1)" />
+    </div>
+    <div class="DataRange">
+      {{ dataRange.start_date }}
+    </div>
+    <div class="rightArrow">
+      <app-arrow-back [position]="position" (click)="changeRange(1)" />
+    </div>
+  </div>
+
+  <div class="calenderRange">
+    <div class="leftArrow">
+      <app-arrow-back (clicked)="changeRange(-7)" />
+    </div>
+    <div class="DataRange">
+      {{ dataRange.start_date }} - {{ dataRange.end_date }}
+    </div>
+    <div class="rightArrow">
+      <app-arrow-back [position]="position" (click)="changeRange(7)" />
+    </div>
+  </div>
+  <div class="legendContainer">
+    <app-calendar-legend [typeLegend]="'full'" />
+  </div>
+
+  <div class="calendar">
+    @if (isLoadingResults) {
+    <app-spinner />
+    } @else{
+    <div class="hoursContainer">
+      @for(hour of hours; track hour){
+      <div class="hourBox">
+        <span>{{ hour }}</span>
+      </div>
+      }
+    </div>
+    @for(day of dateList; track day){
+    <div class="daysContainer">
+      <app-day-calendar-detail
+        [day]="day"
+        (relfleshCalendar)="relfleshCalendar($event)"
+      />
+    </div>
+    }
+    <div class="daysContainerMobile">
+      <app-day-calendar-detail
+        [day]="dateList[0]"
+        (relfleshCalendar)="relfleshCalendar($event)"
+      />
+    </div>
+    }
+  </div>
+</div>

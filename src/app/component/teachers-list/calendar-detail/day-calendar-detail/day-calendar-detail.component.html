@@ -4,21 +4,15 @@
   </div>
   <div class="hoursContainer">
     <div class="hourBox">
-      @if(role=="teacher"){ @for(hour of hours; track hour){
-      <div class="hourBox">
-        @for(time of hour.mm; track time){
-        <div class="timeBox" (click)="selectTerm(hour.hh + ':' + time)"></div>
-        }
-      </div>
-      }}@else{ @for(hour of hours; track hour){
+      @for(hour of hours; track hour){
       <div class="hourBox">
         @for(time of hour.mm; track time){
         <div class="timeBox"></div>
         }
       </div>
-      } }
+      }
     </div>
-    @for(term of day.terms; track term){ @if(term.class==null){
+    @for(term of day.teacherTerms; track term){
     <div
       [ngClass]="'freeTerm'"
       class="term"
@@ -30,37 +24,48 @@
         {{ term.start_date.split(" ")[1] }} - {{ term.end_date.split(" ")[1] }}
       </p>
     </div>
-    }@else{
+
+    } @for(term of day.studentTerms; track term){ @if(term.class!.confirmed==0){
     <div
-      [ngClass]="{
-        noReservation: term.class!.confirmed == 0,
-        reservation: term.class!.confirmed == 1
-      }"
+      [ngClass]="'noReservation'"
       class="term"
       [style.height.px]="term.diffTime"
       [style.top.px]="term.posTop"
-      (click)="detailTerm(term.id)"
+      (click)="noConfirmClass(term.id)"
     >
       <p>
         {{ term.start_date.split(" ")[1] }} - {{ term.end_date.split(" ")[1] }}
       </p>
-      <p>{{ term.class!.lesson.subject.name }}</p>
+      <p>{{term.class!.lesson.subject.name }}</p>
+    </div>
+    }@else{
+          <div
+      [ngClass]="'reservation'"
+      class="term"
+      [style.height.px]="term.diffTime"
+      [style.top.px]="term.posTop"
+      (click)="ConfirmClass(term.id)"
+    >
+      <p>
+        {{ term.start_date.split(" ")[1] }} - {{ term.end_date.split(" ")[1] }}
+      </p>
+      <p>{{term.class!.lesson.subject.name }}</p>
     </div>
     } }
   </div>
 </div>
-
-@if(isVisableTermForm) {
+@if(isVisableTermDetail){
 <div class="modalPage">
-  <div class="newTermForm">
-    <app-new-term [Term]="selectNewTerm" (closeModal)="closeModal($event)" />
+  <div class="detailTerm">
+    <app-reservation-term [idTerm]="idTerm" (closeModal)="closeModal($event)" />
   </div>
 </div>
-
-} @if(isVisableTermDetail){
+}
+@if(isVisableNoConfirmDetail){
 <div class="modalPage">
   <div class="detailTerm">
     <app-detail-terms [idTerm]="idTerm" (closeModal)="closeModal($event)" />
   </div>
 </div>
 }
+

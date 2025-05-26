@@ -49,7 +49,9 @@ export class UserSettingComponent {
     private authService: AuthService,
     private userDetailService: UserDetailsService,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.avatarLink='';
+  }
 
   ngOnInit() {
     this.role = this.authService.getRole();

@@ -55,7 +55,16 @@
         [title]="termDetail.class.lesson.price.toString() + ' zł'"
       />
     </div>
-    }
+    @if(termDetail.class!=null){
+
+    <div class="dateTerm">
+      <app-information-modal [title]="'Potwierdzenie:'" />
+      @if(termDetail.class!.confirmed==1){
+      <app-information-modal [title]="'Potwierdzone'" />}@else{
+      <app-information-modal [title]="'Niepotwierdzono'" />
+      }
+    </div>
+    } }
   </div>
   @if(termDetail.class==null){
   <div class="deleteContainer">
@@ -64,10 +73,12 @@
   }@else{ @if(role=="teacher"){
   <div class="deleteContainer">
     <app-cancel-with-text-button (clicked)="cancel()" />
+    <app-confirm-with-text-button (clicked)="confirm()" />
   </div>
   }@else{
+    @if(termDetail.class!.confirmed==0){
   <div class="deleteContainer">
     <app-cancel-with-text-button (clicked)="cancel()" />
-  </div>
+  </div>}
   } }}
 </div>

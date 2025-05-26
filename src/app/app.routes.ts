@@ -8,6 +8,7 @@ import { LessonComponent } from './page/lesson/lesson.component';
 import { CalendarComponent } from './page/calendar/calendar.component';
 import { SettingPageComponent } from './page/setting-page/setting-page.component';
 import { TeacherListComponent } from './page/teacher-list/teacher-list.component';
+import { TeacherDetailsComponent } from './page/teacher-details/teacher-details.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'setting', component: SettingPageComponent },
   { path: 'teachers', component: TeacherListComponent },
+  { path: 'teachers/:id', component: TeacherDetailsComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', component: NotFoundPageComponent },
   { path: '500', component: ErrorPageComponent },

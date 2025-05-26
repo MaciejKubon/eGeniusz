@@ -1,0 +1,51 @@
+<div class="addFormContainer">
+  <div class="headerContainer">
+    <app-header-modal [title]="'Rezerwacja terminu'" />
+    <app-close-button (clicked)="close()" />
+  </div>
+  @if(isLoadingResults){ <app-spinner /> }@else{
+  <div class="detailTerm">
+    <div class="dateTerm">
+      <app-information-modal [title]="'Data zajęć:'" />
+      <app-information-modal [title]="Term[0]" />
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Godziny zajęć:'" />
+      <app-information-modal [title]="Term[1] + ' - ' + Term[2]" />
+    </div>
+    <div class="formContainer">
+      <form [formGroup]="reserveTerm">
+        <h4>Przedmiot:</h4>
+        <mat-form-field>
+          <mat-label>Przedmiot</mat-label>
+          <mat-select [formControl]="lesson">
+            <mat-option></mat-option>
+            @for (e of lessonList; track e) {
+            <mat-option [value]="e.id"
+              >{{ e.subject.name }} poziom:
+              {{ e.subject_level.name }}</mat-option
+            >
+            }
+          </mat-select>
+          @if((lesson.errors?.['apiError'])){
+          <mat-error>{{lesson.errors?.['apiError'] }}</mat-error
+          >} @if (lesson.invalid) {
+          <mat-error>{{ errorLessonValueMessage() }}</mat-error
+          >}
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="dateTerm">
+      <app-information-modal [title]="'Cena:'" />
+      @if(price!==undefined) {
+      <app-information-modal [title]="price.toString() + ' zł'" />
+      }@else{
+      <app-information-modal [title]="'- zł'" />
+      }
+    </div>
+  </div>
+  }
+  <div class="saveContainer">
+    <app-save-with-text-button (clicked)="onSubmit()" />
+  </div>
+</div>

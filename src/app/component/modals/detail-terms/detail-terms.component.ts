@@ -3,6 +3,8 @@ import { HeaderModalComponent } from '../../title/header-modal/header-modal.comp
 import { CloseButtonComponent } from '../../buttons/close-button/close-button.component';
 import { TermService } from '../../../services/http/calendar/term.service';
 import {
+  confirmClass,
+  confirmClassSuccess,
   deleteClassSucces,
   deleteTermSucces,
   termDetailSucces,
@@ -17,6 +19,7 @@ import { DeleteWithTextButtonComponent } from '../../buttons/delete-with-text-bu
 import { AuthService } from '../../../services/service/auth/auth.service';
 import { CancelWithTextButtonComponent } from '../../buttons/cancel-with-text-button/cancel-with-text-button.component';
 import { ClassesService } from '../../../services/http/calendar/classes.service';
+import { ConfirmWithTextButtonComponent } from '../../buttons/confirm-with-text-button/confirm-with-text-button.component';
 
 @Component({
   selector: 'app-detail-terms',
@@ -28,6 +31,7 @@ import { ClassesService } from '../../../services/http/calendar/classes.service'
     SpinnerComponent,
     DeleteWithTextButtonComponent,
     CancelWithTextButtonComponent,
+    ConfirmWithTextButtonComponent,
   ],
   templateUrl: './detail-terms.component.html',
   styleUrl: './detail-terms.component.scss',
@@ -67,7 +71,7 @@ export class DetailTermsComponent {
         })
       )
       .subscribe((data: termDetailSucces) => {
-        this.termDetail = data.terms;                
+        this.termDetail = data.terms;
         this.Term.push(this.termDetail.start_date.split(' ')[0]);
         this.Term.push(this.termDetail.start_date.split(' ')[1]);
         this.Term.push(this.termDetail.end_date.split(' ')[1]);
@@ -93,17 +97,36 @@ export class DetailTermsComponent {
   }
   cancel() {
     if (this.termDetail.class != null) {
-      this.classService.deleteClass(this.termDetail.class.id)
+      this.classService
+        .deleteClass(this.termDetail.class.id)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.notificationService.showError(error.error.message);
+            return throwError(() => new Error('Error fetching data'));
+          })
+        )
+        .subscribe((data: deleteClassSucces) => {
+          this.notificationService.showSuccess(data.message);
+          this.closeModal.emit(true);
+        });
+    }
+  }
+  confirm() {
+    let confirmData: confirmClass = {
+      terms_id: this.idTerm,
+      confirmed: 1,
+    };
+    this.classService
+      .confitrClass(confirmData)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.notificationService.showError(error.error.message);
           return throwError(() => new Error('Error fetching data'));
         })
       )
-      .subscribe((data: deleteClassSucces) => {
+      .subscribe((data: confirmClassSuccess) => {
         this.notificationService.showSuccess(data.message);
         this.closeModal.emit(true);
       });
-    }
   }
 }

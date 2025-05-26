@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { dateClass } from '../../../interfaces/calendarInterfaces';
+import { addClass, confirmClass, dateClass } from '../../../interfaces/calendarInterfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +17,11 @@ export class ClassesService {
   }
   deleteClass(id: number) {
     return this.http.delete<any>(this.apiUrl + 'classes/' + id);
+  }
+  confitrClass(confirm:confirmClass){
+    return this.http.post<any>(this.apiUrl+'classes/confirm', confirm)
+  }
+  reservationClass(addClass:addClass){
+    return this.http.post<any>(this.apiUrl+'classes', addClass);
   }
 }
