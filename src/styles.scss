@@ -64,6 +64,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 //COLOR
 //
 $blueColorPrimary: #1c52e8;
@@ -126,8 +127,10 @@ $dayBoxNameHight: 50px;
  
 //border
 $borderPrimary: 1px solid $blueColorPrimary;
+$borderSecend: 1px solid $blueColorFourth;
 $borderBottomPrimary: 2px solid $blueColorPrimary;
 $borderBottomSecend: 3px solid $blueColorPrimary;
+
 //borderRadius
 $radiusSmall:10px;
 $radiusMid: 25px;
@@ -149,13 +152,12 @@ $modalShadow: 0px 0px 5px gray;
 ::-webkit-scrollbar-thumb {
   background: $blueColorSecond;
 }
-
-.snackbar-success {
+.success-snackbar {
   background-color: #4caf50 !important;
   color: white;
 }
 
-.snackbar-error {
+.error-snackbar {
   background-color: #f44336 !important;
   color: white;
 }

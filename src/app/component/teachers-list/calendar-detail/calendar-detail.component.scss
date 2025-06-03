@@ -1,0 +1,104 @@
+@import "../../../../styles.scss";
+.calendarContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+    .title {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .calendarRangeMobile {
+    display: none;
+    justify-content: space-between;
+    border: $borderPrimary;
+    border-radius: $radiusSmall;
+  }
+  .DataRange {
+    display: flex;
+    align-items: center;
+    font-size: $fontHederSizeMid-Mobile;
+    color: $blueColorSecond;
+  }
+  .calenderRange {
+    display: flex;
+    justify-content: space-between;
+    border: $borderPrimary;
+    border-radius: $radiusSmall;
+    width: 100%;
+  }
+  .legendContainer {
+    width: 100%;
+    app-calendar-legend {
+      width: 100%;
+    }
+  }
+  .calendar {
+    width: 100%;
+    margin-top: 0px;
+    background-color: $blueColorSecond;
+    display: flex;
+    app-spinner {
+      width: 100%;
+    }
+    .hoursContainer {
+      margin-top: $dayBoxNameHight;
+      width: 50px;
+      background-color: $blueColorSecond;
+      text-align: center;
+      .hourBox {
+        color: $whiteColorPrimary;
+        height: $dayBoxHight;
+        border-top: $borderPrimary;
+      }
+    }
+    .daysContainer {
+      border-left: $borderPrimary;
+      width: calc(100% - 50px);
+      display: flex;
+      app-day-calendar-detail {
+        width: 100%;
+      }
+    }
+    .daysContainerMobile {
+      display: none;
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .calendarContainer {
+    .calenderRange {
+      display: none;
+    }
+    .calendarRangeMobile{
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      border: $borderPrimary;
+      width: 100%;
+      .DataRange {
+        display: flex;
+        align-items: center;
+        font-size: $headerFontSizeMedium;
+      }
+    }
+    .calendar{
+      width: 100%;
+      .daysContainer {
+        display: none;
+
+      }
+      .daysContainerMobile {
+        width: 100%;
+        display: flex;
+        app-day-calendar-detail {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+

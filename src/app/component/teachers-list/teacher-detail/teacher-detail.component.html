@@ -1,0 +1,31 @@
+<div class="teacherDetailsContainer">
+  @if(isLoadingResults){
+    <app-spinner />
+  }@else{
+  <div class="title">
+    <div class="titleContainer">
+      <app-header-title [title]="teacher.firstName +' '+ teacher.lastName" />
+    </div>
+  </div>
+  <div class="teacherCard">
+    <figure>
+      <img [src]="'http://localhost:8000/storage/'+teacher.avatar" />
+    </figure>
+    <div class="detailsCard">
+        <div class="lessonBox">
+            <app-detail-title [title]="'Przedmioty'"/>
+            <app-teacher-lessons [lessonData]="teacher.lessons"/>
+        </div>
+        <div class="describeBox">
+          <app-detail-title [title]="'Opis'"/>
+            <p>
+              {{teacher.description}}
+            </p>
+        </div>
+    </div>
+  </div>
+  <div class="calendarContainer">
+    <app-calendar-detail/>
+  </div>
+}
+</div>

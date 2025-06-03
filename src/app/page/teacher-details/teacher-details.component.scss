@@ -1,0 +1,15 @@
+@import "../../../styles.scss";
+section {
+  background-color: $bgblueColorPrimary;
+  min-height: 100svh;
+  .teacherListContainer {
+    margin-top: 70px;
+    padding: 50px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    app-teacher-detail {
+      width: 75%;
+    }
+  }
+}

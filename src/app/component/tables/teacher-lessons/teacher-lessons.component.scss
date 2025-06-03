@@ -1,0 +1,15 @@
+@import "../../../../styles.scss";
+
+.tableContainer{
+    width: 100%;
+    table{
+        width: 100%;
+        background-color: $bgColorNone;
+        border:$borderSecend;
+        th,td{
+            width: 33%;
+            border:$borderSecend;  
+            text-align: center; 
+        }
+    }
+}

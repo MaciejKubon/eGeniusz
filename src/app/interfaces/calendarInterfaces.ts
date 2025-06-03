@@ -33,9 +33,17 @@ export interface classInTerms {
   id: number;
   student: student;
   lesson: lesson;
-  confirmed: number
+  confirmed: number;
 }
-
+export interface addClass {
+  terms_id: number;
+  lesson_id: number;
+  confirmed: number;
+}
+export interface confirmClass{
+  terms_id: number;
+  confirmed: number;
+}
 export interface newTermSuccess {
   message: string;
 }
@@ -52,6 +60,17 @@ export interface deleteTermSucces {
 }
 export interface deleteClassSucces {
   message: string;
+}
+export interface addClassSuccess {
+  message: string;
+}
+export interface confirmClassSuccess{
+    message: string;
+}
+export interface addClasseError {
+  terms_id?: string[];
+  lesson_id?: string[]
+  confirmed?: string[]
 }
 export interface newTermError {
   message: string;

@@ -14,6 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { NotificationService } from '../../services/service/notification/notification.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teachers-list',
@@ -37,9 +38,10 @@ export class TeachersListComponent {
     minPrice: null,
     maxPrice: null,
   };
-  link: string = 'http://localhost:8000';
+  link: string = 'http://localhost:8000/storage/';
   teacherList: teacherList[] = [];
   constructor(
+    private router: Router,
     private teacherListService: TeacherListService,
     private notificationService: NotificationService
   ) {}
@@ -58,7 +60,7 @@ export class TeachersListComponent {
     this.loadTeacherList();
   }
   routeTo(id: number) {
-    console.log(id);
+    this.router.navigate(['teachers/'+id]);
   }
   loadTeacherList() {
     this.isLoadingResults= true;

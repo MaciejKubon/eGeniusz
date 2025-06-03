@@ -1,0 +1,73 @@
+@import "../../../../styles.scss";
+.teacherDetailsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  .title {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .teacherCard {
+    width: 100%;
+    background-color: $bgblueColorPrimary;
+    border-radius: $radiusBig;
+    padding: 25px;
+    display: flex;
+    figure {
+      width: 30%;
+      margin-right: 5%;
+      img {
+        width: 100%;
+        border-radius: $radiusMid;
+      }
+      
+    }
+    .detailsCard {
+      width: 60%;
+      margin-top: 20px;
+      .lessonBox {
+        width: 100%;
+        app-detail-title,
+        app-teacher-lessons {
+          width: 100%;
+        }
+      }
+      .describeBox{
+        margin-top: 25px;
+        app-detail-title{
+          width: 100%;
+        }
+        p{
+         font-size: $fontSizeSmall;
+         color: $blueColorSecond;
+        }
+      }
+    }
+  }
+  .calendarContainer{
+    margin-top: 50px;
+    width: 100%;
+    app-calendar-detail{
+      width: 100%;
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .teacherDetailsContainer {
+    .teacherCard{
+      padding: 15px;
+      flex-wrap: wrap;
+      figure {
+        width: 100%;
+        margin: 25px
+      }
+      .detailsCard{
+        width: 100%;
+      }
+    }
+  }
+}

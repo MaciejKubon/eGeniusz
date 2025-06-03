@@ -1,0 +1,9 @@
+@import '../../../../styles.scss';
+
+h3{
+    font-size: $headerFontSizeSmall;
+    font-weight: $fontBold;
+    color: $blueColorSecond;
+    line-height: 1.5rem;
+    padding-left: 25px;
+}

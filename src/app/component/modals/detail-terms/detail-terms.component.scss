@@ -6,26 +6,28 @@
   border-radius: $radiusMid;
   padding: 35px 5%;
   box-shadow: $modalShadow;
+  max-height: 60vh;
+  overflow-y: auto;
   .headerContainer {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
-  .detailTerm{
+  .detailTerm {
     margin-top: 20px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    .dateTerm{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
+    .dateTerm {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
     }
   }
-  .deleteContainer{
+  .deleteContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     margin-top: 50px;
   }
