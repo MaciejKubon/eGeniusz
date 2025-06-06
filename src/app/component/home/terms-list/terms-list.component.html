@@ -1,0 +1,159 @@
+<app-header-title [title]="'Zajęcia'" />
+<div class="accordingComponent">
+  @if (isLoadingResults) {
+  <app-spinner />
+  } @else{
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Potwierdzone zajęcia </mat-panel-title>
+        <mat-panel-description>
+          <div class="circle">{{ termsList.confirmClasses.length }}</div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      @if(termsList.confirmClasses.length == 0 ) {
+      <div class="noDetail">
+        <app-information-modal [title]="'Brak zajęć'" />
+      </div>
+      }@else{ @for(term of termsList.confirmClasses; track term){
+      <div class="termsDetail">
+        <div class="dateTerm">
+          <app-information-text
+            [title]="
+              term.start_date.split(' ')[1] +
+              ' - ' +
+              term.end_date.split(' ')[1]
+            "
+          />
+          <app-information-text [title]="term.start_date.split(' ')[0]" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Przedmiot: '" />
+          <app-information-text [title]="term.subject_name" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Poziom: '" />
+          <app-information-text [title]="term.subject_level_name" />
+        </div>
+        <div class="detail">
+          @if(role=='teacher'){
+          <app-information-text [title]="'Student: '" />
+          } @if(role=='student'){
+          <app-information-text [title]="'Nauczyciel: '" />
+          }
+          <app-information-text
+            [title]="term.first_name + ' ' + term.last_name"
+          />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Cena: '" />
+          <app-information-text [title]="term.lesson_price + ' zł'" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Poziom: '" />
+          @if(term.confirmed==0){
+          <app-information-text [title]="'Niepotwierdzono'" />
+          }@else{
+          <app-information-text [title]="'Potwierdzono'" />
+          }
+        </div>
+        <div class="actionContainer"></div>
+      </div>
+      }}
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Zajęcia niepotwierdzone</mat-panel-title>
+        <mat-panel-description>
+          <div class="circle">{{ termsList.classes.length }}</div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      @if(termsList.classes.length == 0 ) {
+      <div class="noDetail">
+        <app-information-modal [title]="'Brak zajęć'" />
+      </div>
+      }@else{ @for(term of termsList.classes; track term){
+      <div class="termsDetail">
+        <div class="dateTerm">
+          <app-information-text
+            [title]="
+              term.start_date.split(' ')[1] +
+              ' - ' +
+              term.end_date.split(' ')[1]
+            "
+          />
+          <app-information-text [title]="term.start_date.split(' ')[0]" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Przedmiot: '" />
+          <app-information-text [title]="term.subject_name" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Poziom: '" />
+          <app-information-text [title]="term.subject_level_name" />
+        </div>
+        <div class="detail">
+          @if(role=='teacher'){
+          <app-information-text [title]="'Student: '" />
+          } @if(role=='student'){
+          <app-information-text [title]="'Nauczyciel: '" />
+          }
+          <app-information-text
+            [title]="term.first_name + ' ' + term.last_name"
+          />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Cena: '" />
+          <app-information-text [title]="term.lesson_price + ' zł'" />
+        </div>
+        <div class="detail">
+          <app-information-text [title]="'Poziom: '" />
+          @if(term.confirmed==0){
+          <app-information-text [title]="'Niepotwierdzono'" />
+          }@else{
+          <app-information-text [title]="'Potwierdzono'" />
+          }
+        </div>
+        <div class="actionContainer">
+          @if(role=='teacher'){
+          <app-confirm-with-text-button (clicked)="confirm(term.id)" />
+          }
+          <app-cancel-with-text-button (clicked)="cancel(term.id)" />
+        </div>
+      </div>
+      }}
+    </mat-expansion-panel>
+    @if(role=='teacher'){
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Wolne Terminy </mat-panel-title>
+        <mat-panel-description>
+          <div class="circle">{{ termsList.terms!.length }}</div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      @if(termsList.terms!.length == 0 ) {
+      <div class="noDetail">
+        <app-information-modal [title]="'Brak zajęć'" />
+      </div>
+      }@else{ @for(term of termsList.terms; track term){
+      <div class="termsDetail">
+        <div class="dateTerm">
+          <app-information-text
+            [title]="
+              term.start_date.split(' ')[1] +
+              ' - ' +
+              term.end_date.split(' ')[1]
+            "
+          />
+          <app-information-text [title]="term.start_date.split(' ')[0]" />
+        </div>
+        <div class="actionContainer">
+          <app-delete-with-text-button (clicked)="delete(term.id)" />
+        </div>
+      </div>
+      }}
+    </mat-expansion-panel>
+    }
+  </mat-accordion>
+  }
+</div>

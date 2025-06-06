@@ -6,11 +6,12 @@ import { catchError, throwError } from 'rxjs';
 import { authSucces } from '../../interfaces/authInterfaces';
 import { NotificationService } from '../../services/service/notification/notification.service';
 import { Router } from '@angular/router';
+import { TermsListComponent } from '../../component/home/terms-list/terms-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, TermsListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

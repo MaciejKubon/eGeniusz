@@ -1,0 +1,53 @@
+@import "../../../../styles.scss";
+.accordingComponent {
+  margin-top: 50px;
+
+  .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    border: $borderBottomSecend;
+    color: $blueColorPrimary;
+    text-align: center;
+  }
+  .termsDetail {
+    margin-bottom: 25px;
+    border-bottom: $borderBottomSecend;
+    .dateTerm {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      app-information-text {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .actionContainer {
+      width: 100%;
+      margin: 25px 0px;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  .noDetail {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0px;
+  }
+}
+
+.accordingComponent .mat-expansion-panel-header-description {
+  justify-content: flex-end !important;
+  align-items: center;
+}
+mat-panel-title {
+  font-size: $headerFontSizeMedium;
+  color: $blueColorSecond;
+}
